@@ -33,7 +33,6 @@ const commonOutput = {
 const commonTerser = terserPlugin(require('./terser.config.js'))
 
 export default [
-  // NPM bundles. They have all the dependencies excluded for end code size optimization.
   {
     ...commonInput,
     external: Object.keys(dependencies),
@@ -49,6 +48,27 @@ export default [
         ...commonOutput,
         file: `${outputDirectory}/${artifactName}.js`,
         format: 'iife',
+      },
+    ],
+  },
+
+  // NPM bundles. They have all the dependencies excluded for end code size optimization.
+  {
+    ...commonInput,
+    external: Object.keys(dependencies),
+    output: [
+      // CJS for usage with `require()`
+      {
+        ...commonOutput,
+        file: `${outputDirectory}/${artifactName}.cjs.js`,
+        format: 'cjs',
+      },
+
+      // ESM for usage with `import`
+      {
+        ...commonOutput,
+        file: `${outputDirectory}/${artifactName}.esm.js`,
+        format: 'es',
       },
     ],
   },
