@@ -1,6 +1,6 @@
 {
   "name": "@fingerprintjs/fingerprintjs-pro-gtm",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "FingerprintJS pro version adapter for Google Tag Manager",
   "author": "FingerprintJS, Inc (https://fingerprintjs.com)",
   "license": "MIT",
