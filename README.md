@@ -7,7 +7,7 @@
   &lt;Place for badges&gt;
 </p>
 
-Adapter for [FingerprintJS-pro JS agent](https://dev.fingerprintjs.com/docs) to use in [Google Tag Manager (GTM)](https://tagmanager.google.com/) template. GTM uses javascript subset that doesn't support Pomises and this is the reason for this library.
+Adapter for [FingerprintJS Pro JS agent](https://dev.fingerprintjs.com/docs) to use in [Google Tag Manager (GTM)](https://tagmanager.google.com/) template. GTM uses javascript subset that doesn't support Pomises and this is the reason for this library.
 
 ## Example of usage
 
