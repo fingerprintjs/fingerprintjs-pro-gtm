@@ -63,13 +63,6 @@ export default [
         file: `${outputDirectory}/${artifactName}.cjs.js`,
         format: 'cjs',
       },
-
-      // ESM for usage with `import`
-      {
-        ...commonOutput,
-        file: `${outputDirectory}/${artifactName}.esm.js`,
-        format: 'es',
-      },
     ],
   },
 ]
