@@ -1,5 +1,5 @@
 import type FpJs from '@fingerprintjs/fingerprintjs-pro'
-import type { LoadOptions, GetResult } from '@fingerprintjs/fingerprintjs-pro'
+import type { LoadOptions, GetOptions, GetResult } from '@fingerprintjs/fingerprintjs-pro'
 import { pick } from './pick'
 
 declare global {
@@ -8,8 +8,8 @@ declare global {
   }
 }
 
-export const load = (loadOptions: LoadOptions, callback: (result: GetResult) => void) => {
-  const cdnUrl = `https://fpcdn.io/v3/${loadOptions.apiKey}/esm.min.js`
+export const load = (options: LoadOptions & GetOptions<boolean>, callback: (result: GetResult) => void) => {
+  const cdnUrl = `https://fpcdn.io/v3/${options.apiKey}/esm.min.js`
   const fpPromise = new Promise((resolve, reject) => {
     const script = document.createElement('script')
     script.onload = resolve
@@ -17,7 +17,7 @@ export const load = (loadOptions: LoadOptions, callback: (result: GetResult) => 
     script.async = true
     script.src = cdnUrl
     document.head.appendChild(script)
-  }).then(() => window.FingerprintJS.load(pick(loadOptions, ['region']) as LoadOptions))
+  }).then(() => window.FingerprintJS.load(pick(options, ['region', 'endpoint']) as LoadOptions))
 
-  fpPromise.then((fp) => fp.get()).then((result) => callback(result))
+  fpPromise.then((fp) => fp.get(pick(options, ['tag', 'linkedId']))).then((result) => callback(result))
 }
