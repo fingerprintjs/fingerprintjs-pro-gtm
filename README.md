@@ -4,10 +4,14 @@
   </a>
 </p>
 <p align="center">
-  &lt;Place for badges&gt;
+  <a href="https://github.com/fingerprintjs/fingerprintjs-pro-gtm/actions/workflows/build.yml">
+    <img src="https://github.com/fingerprintjs/fingerprintjs-pro-gtm/actions/workflows/build.yml/badge.svg" alt="Build status">
+  </a>
 </p>
 
-Adapter for [FingerprintJS Pro JS agent](https://dev.fingerprintjs.com/docs) to use in [Google Tag Manager (GTM)](https://tagmanager.google.com/) template. GTM uses javascript subset that doesn't support Pomises and this is the reason for this library.
+Since GTM ([Google Tag Manager](https://tagmanager.google.com/)) uses a subset of JavaScript API that doesn't support Promises, we created this adapter for the [FingerprintJS Pro JS agent](https://dev.fingerprintjs.com/docs) that can be used in a GTM template.
+
+> :warning: **Work in progress**: This is a beta version of the library
 
 ## Example of usage
 
