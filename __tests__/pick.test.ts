@@ -1,6 +1,14 @@
 import { pick } from '../src/pick'
 
-const mockObject = { a: 1, b: 2, c: 3 }
+interface MockObject {
+  a?: number
+  b?: number
+  c?: number
+  d?: number
+  f?: number
+}
+
+const mockObject: MockObject = { a: 1, b: 2, c: 3 }
 
 describe('Pick function', () => {
   it('should pick a and c fields', () => {
