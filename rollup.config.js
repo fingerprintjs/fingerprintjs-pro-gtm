@@ -1,11 +1,9 @@
 import typescript from '@rollup/plugin-typescript'
 import jsonPlugin from '@rollup/plugin-json'
-import external from 'rollup-plugin-peer-deps-external'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 const terserPlugin = require('rollup-plugin-terser').terser
 import licensePlugin from 'rollup-plugin-license'
 import { join } from 'path'
-
-const { dependencies = {} } = require('./package.json')
 
 const inputFile = 'src/index.ts'
 const outputDirectory = 'dist'
@@ -21,7 +19,7 @@ const commonBanner = licensePlugin({
 
 const commonInput = {
   input: inputFile,
-  plugins: [jsonPlugin(), typescript(), external(), commonBanner],
+  plugins: [jsonPlugin(), typescript(), nodeResolve(), commonBanner],
 }
 
 const commonOutput = {
@@ -35,7 +33,6 @@ const commonTerser = terserPlugin(require('./terser.config.js'))
 export default [
   {
     ...commonInput,
-    external: Object.keys(dependencies),
     output: [
       // IIFE build for browser with adding globals to window
       {
@@ -55,7 +52,6 @@ export default [
   // NPM bundles. They have all the dependencies excluded for end code size optimization.
   {
     ...commonInput,
-    external: Object.keys(dependencies),
     output: [
       // CJS for usage with `require()`
       {
