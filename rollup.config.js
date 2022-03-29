@@ -53,11 +53,11 @@ export default [
   {
     ...commonInput,
     output: [
-      // CJS for usage with `require()`
+      // ESM for usage with `import`
       {
         ...commonOutput,
-        file: `${outputDirectory}/${artifactName}.cjs.js`,
-        format: 'cjs',
+        file: `${outputDirectory}/${artifactName}.esm.js`,
+        format: 'es',
       },
     ],
   },

@@ -17,7 +17,6 @@
     "release:minor": "changelog -m && git add CHANGELOG.md && yarn version --minor",
     "release:patch": "changelog -p && git add CHANGELOG.md && yarn version --patch"
   },
-  "main": "dist/fpjs-pro-gtm.cjs.js",
   "module": "dist/fpjs-pro-gtm.esm.js",
   "files": [
     "dist"
