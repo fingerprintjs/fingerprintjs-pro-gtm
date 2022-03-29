@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "dist/src",
     "module": "esnext",
     "moduleResolution": "node",
     "target": "es6",
@@ -14,7 +13,6 @@
     "noImplicitReturns": true,
     "exactOptionalPropertyTypes": true
   },
-  "files": ["src/index.ts"],
   "exclude": [
     "dist",
     "node_modules",

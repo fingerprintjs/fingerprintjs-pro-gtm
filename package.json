@@ -9,7 +9,7 @@
     "url": "https://github.com/fingerprintjs/fingerprintjs-pro-gtm.git"
   },
   "scripts": {
-    "build": "rimraf dist && rollup -c rollup.config.js",
+    "build": "rimraf dist && rollup -c",
     "lint": "eslint --ext .js,.ts --ignore-path .gitignore --max-warnings 0 .",
     "lint:fix": "yarn lint --fix",
     "test": "jest",
