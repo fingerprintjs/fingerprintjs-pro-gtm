@@ -12,6 +12,7 @@
     "build": "rimraf dist && rollup -c",
     "lint": "eslint --ext .js,.ts --ignore-path .gitignore --max-warnings 0 .",
     "lint:fix": "yarn lint --fix",
+    "typecheck": "tsc --noEmit",
     "test": "jest",
     "release:major": "changelog -M && git add CHANGELOG.md && yarn version --major",
     "release:minor": "changelog -m && git add CHANGELOG.md && yarn version --minor",
