@@ -9,22 +9,23 @@
     "url": "https://github.com/fingerprintjs/fingerprintjs-pro-gtm.git"
   },
   "scripts": {
-    "build": "rimraf dist && rollup -c rollup.config.js",
+    "build": "rimraf dist && rollup -c",
     "lint": "eslint --ext .js,.ts --ignore-path .gitignore --max-warnings 0 .",
     "lint:fix": "yarn lint --fix",
+    "typecheck": "tsc --noEmit",
     "test": "jest",
     "release:major": "changelog -M && git add CHANGELOG.md && yarn version --major",
     "release:minor": "changelog -m && git add CHANGELOG.md && yarn version --minor",
     "release:patch": "changelog -p && git add CHANGELOG.md && yarn version --patch"
   },
-  "main": "dist/fpjs-pro-gtm.cjs.js",
   "module": "dist/fpjs-pro-gtm.esm.js",
   "files": [
     "dist"
   ],
   "devDependencies": {
-    "@fingerprintjs/fingerprintjs-pro": "^3.5.7",
+    "@fingerprintjs/fingerprintjs-pro": "^3.6.0",
     "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.1.3",
     "@rollup/plugin-typescript": "^8.3.1",
     "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
@@ -38,7 +39,6 @@
     "rollup": "^2.70.1",
     "rollup-plugin-license": "^2.6.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-terser": "^7.0.2",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.5"
   }

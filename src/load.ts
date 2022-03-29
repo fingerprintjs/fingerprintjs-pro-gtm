@@ -1,23 +1,13 @@
-import type FpJs from '@fingerprintjs/fingerprintjs-pro'
-import type { LoadOptions, GetResult } from '@fingerprintjs/fingerprintjs-pro'
-import { pick } from './pick'
+import * as FingerprintJS from '@fingerprintjs/fingerprintjs-pro'
+import { LoadOptions, GetOptions, GetResult } from '@fingerprintjs/fingerprintjs-pro'
+import { addIntegrationInfo } from './integrationInfo'
 
-declare global {
-  interface Window {
-    FingerprintJS: typeof FpJs
-  }
-}
+export const load = (
+  loadOptions: LoadOptions,
+  getOptions: GetOptions<boolean>,
+  callback: (result: GetResult) => void
+) => {
+  const fpPromise = FingerprintJS.load(addIntegrationInfo(loadOptions))
 
-export const load = (loadOptions: LoadOptions, callback: (result: GetResult) => void) => {
-  const cdnUrl = `https://fpcdn.io/v3/${loadOptions.apiKey}/esm.min.js`
-  const fpPromise = new Promise((resolve, reject) => {
-    const script = document.createElement('script')
-    script.onload = resolve
-    script.onerror = reject
-    script.async = true
-    script.src = cdnUrl
-    document.head.appendChild(script)
-  }).then(() => window.FingerprintJS.load(pick(loadOptions, ['region']) as LoadOptions))
-
-  fpPromise.then((fp) => fp.get()).then((result) => callback(result))
+  fpPromise.then((fp) => fp.get(getOptions)).then((result) => callback(result))
 }
