@@ -1,4 +1,4 @@
-import FingerprintJS from '@fingerprintjs/fingerprintjs-pro'
+import * as FingerprintJS from '@fingerprintjs/fingerprintjs-pro'
 import type { LoadOptions, GetOptions, GetResult } from '@fingerprintjs/fingerprintjs-pro'
 import { pick } from './pick'
 
