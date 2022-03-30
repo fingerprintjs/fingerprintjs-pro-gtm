@@ -14,6 +14,7 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "FingerprintJS Pro",
+  "categories": ["SESSION_RECORDING"],
   "brand": {
     "id": "brand_dummy",
     "displayName": "",
@@ -91,6 +92,21 @@ ___TEMPLATE_PARAMETERS___
         "help": "A way of linking current identification event with a custom identifier"
       }
     ]
+  },
+  {
+    "type": "GROUP",
+    "name": "dataLayer",
+    "displayName": "DataLayer variables",
+    "groupStyle": "ZIPPY_CLOSED",
+    "subParams": [
+      {
+        "type": "TEXT",
+        "name": "visitorIdCustomName",
+        "displayName": "VisitorId custom name",
+        "simpleValueType": true,
+        "help": "You can change visitorId variable name that emits in dataLayer"
+      }
+    ]
   }
 ]
 
@@ -141,13 +157,13 @@ const onSuccess = () => {
   const onFpJsLoad = (result) => {
     log('result', result);
     const dataLayerPush = createQueue('dataLayer');
-    dataLayerPush({
-      event: 'fingerprintJS.loaded',
-      visitorId: result.visitorId
-    });
+    const visitorIdName = data.visitorIdCustomName ? data.visitorIdCustomName : 'visitorId';
+    const event = {event: 'fingerprintJS.loaded'};
+    event[visitorIdName] = result.visitorId;
+    dataLayerPush(event);
     data.gtmOnSuccess();
   };
-  
+
   callInWindow('FingerprintjsProGTM.load', loadOptions, getOptions, onFpJsLoad);
 };
 
@@ -405,10 +421,39 @@ scenarios:
     runCode(mockData);
 
     assertApi('gtmOnSuccess').wasCalled();
+- name: check visitorIdCustomName field works
+  code: |-
+    const mockData = {
+      apiKey: 'aspodkasodk',
+      visitorIdCustomName: 'fingerprintJsProVisitorId'
+    };
+
+    mock('injectScript', function(url, onSuccess, onFail) {
+      onSuccess();
+    });
+
+    mock('callInWindow', function(fname, getOptions, loadOptions, callback) {
+      callback({visitorId: 'qwerty'});
+    });
+
+    mock('createQueue', function(name) {
+      return function(params) {
+        assertThat(params).isEqualTo({
+          event: 'fingerprintJS.loaded',
+          fingerprintJsProVisitorId: 'qwerty',
+        });
+      };
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockData);
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
 
 
 ___NOTES___
 
-Created on 30.03.2022, 18:08:50
+Created on 30.03.2022, 20:54:30
 
 
