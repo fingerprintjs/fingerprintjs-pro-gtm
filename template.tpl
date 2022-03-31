@@ -36,7 +36,7 @@ ___TEMPLATE_PARAMETERS___
     "type": "TEXT",
     "name": "apiKey",
     "simpleValueType": true,
-    "displayName": "apiKey",
+    "displayName": "Public API key",
     "valueValidators": [
       {
         "type": "NON_EMPTY"
