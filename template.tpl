@@ -158,7 +158,7 @@ const onSuccess = () => {
     log('result', result);
     const dataLayerPush = createQueue('dataLayer');
     const visitorIdName = data.visitorIdCustomName ? data.visitorIdCustomName : 'visitorId';
-    const event = {event: 'fingerprintJS.loaded'};
+    const event = {event: 'FingerprintJSPro.loaded'};
     event[visitorIdName] = result.visitorId;
     dataLayerPush(event);
     data.gtmOnSuccess();
@@ -439,7 +439,7 @@ scenarios:
     mock('createQueue', function(name) {
       return function(params) {
         assertThat(params).isEqualTo({
-          event: 'fingerprintJS.loaded',
+          event: 'FingerprintJSPro.loaded',
           fingerprintJsProVisitorId: 'qwerty',
         });
       };
