@@ -14,7 +14,9 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "FingerprintJS Pro",
-  "categories": ["SESSION_RECORDING"],
+  "categories": [
+    "SESSION_RECORDING"
+  ],
   "brand": {
     "id": "brand_dummy",
     "displayName": "",
@@ -90,21 +92,25 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "linkedId",
         "simpleValueType": true,
         "help": "A way of linking current identification event with a custom identifier"
-      }
-    ]
-  },
-  {
-    "type": "GROUP",
-    "name": "dataLayer",
-    "displayName": "DataLayer variables",
-    "groupStyle": "ZIPPY_CLOSED",
-    "subParams": [
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "extendedResult",
+        "checkboxText": "Extended result",
+        "simpleValueType": true
+      },
       {
         "type": "TEXT",
-        "name": "visitorIdCustomName",
-        "displayName": "VisitorId custom name",
+        "name": "resultCustomName",
+        "displayName": "Result custom name",
         "simpleValueType": true,
-        "help": "You can change visitorId variable name that emits in dataLayer"
+        "help": "You can change result variable name that emits in dataLayer",
+        "defaultValue": "FingerprintJSProResult",
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ]
       }
     ]
   }
@@ -148,6 +154,10 @@ if (data.linkedId) {
   getOptions.linkedId = data.linkedId;
 }
 
+if (data.extendedResult) {
+  getOptions.extendedResult = true;
+}
+
 log('loadOptions =', loadOptions);
 log('getOptions=', getOptions);
 
@@ -157,9 +167,8 @@ const onSuccess = () => {
   const onFpJsLoad = (result) => {
     log('result', result);
     const dataLayerPush = createQueue('dataLayer');
-    const visitorIdName = data.visitorIdCustomName ? data.visitorIdCustomName : 'visitorId';
     const event = {event: 'FingerprintJSPro.loaded'};
-    event[visitorIdName] = result.visitorId;
+    event[data.resultCustomName] = result;
     dataLayerPush(event);
     data.gtmOnSuccess();
   };
@@ -392,6 +401,7 @@ scenarios:
       endpoint: 'https://end.point/',
       tag: 'myTag',
       linkedId: 'some-id',
+      extendedResult: true,
     };
 
     const expectedLoadOptions = {
@@ -404,6 +414,7 @@ scenarios:
     const expectedGetOptions = {
       tag: 'myTag',
       linkedId: 'some-id',
+      extendedResult: true,
     };
 
 
@@ -425,7 +436,8 @@ scenarios:
   code: |-
     const mockData = {
       apiKey: 'aspodkasodk',
-      visitorIdCustomName: 'fingerprintJsProVisitorId'
+      visitorIdCustomName: 'fingerprintJsProVisitorId',
+      resultCustomName: 'result'
     };
 
     mock('injectScript', function(url, onSuccess, onFail) {
@@ -440,7 +452,7 @@ scenarios:
       return function(params) {
         assertThat(params).isEqualTo({
           event: 'FingerprintJSPro.loaded',
-          fingerprintJsProVisitorId: 'qwerty',
+          result: {visitorId: 'qwerty'},
         });
       };
     });
