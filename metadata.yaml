@@ -1,5 +1,5 @@
 homepage: "https://fingerprintjs.com"
 documentation: "https://dev.fingerprintjs.com/docs/fingerprintjs-pro-gtm"
 versions:
-  - sha: <sha>
+  - sha: 90a3a0caa63f14432e2b6c7ad43e06c222c5d3f6
     changeNotes: Initial release.
