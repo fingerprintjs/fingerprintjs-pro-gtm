@@ -1,5 +1,5 @@
 homepage: "https://fingerprintjs.com"
 documentation: "https://dev.fingerprintjs.com/docs/fingerprintjs-pro-google-tag-manager"
 versions:
-  - sha: e8bdac2d91e890e934ce9c6bd23b2feed91a54fe
+  - sha: 6f8ee49521acc4cbf99892b88d82fe11b200c3fb
     changeNotes: Initial release.
