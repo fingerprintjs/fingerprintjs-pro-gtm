@@ -48,7 +48,7 @@ ___TEMPLATE_PARAMETERS___
     "type": "SELECT",
     "name": "region",
     "displayName": "Region",
-    "macrosInSelect": true,
+    "macrosInSelect": false,
     "selectItems": [
       {
         "value": "",
@@ -67,18 +67,18 @@ ___TEMPLATE_PARAMETERS___
     "help": "Which region to use"
   },
   {
-    "type": "TEXT",
-    "name": "endpoint",
-    "displayName": "Endpoint",
-    "simpleValueType": true,
-    "help": "Server API URL. Should be only used with Subdomain integration."
-  },
-  {
     "type": "GROUP",
     "name": "additionalFields",
-    "displayName": "Additional fields",
+    "displayName": "Additional Settings",
     "groupStyle": "ZIPPY_CLOSED",
     "subParams": [
+      {
+        "type": "TEXT",
+        "name": "endpoint",
+        "displayName": "Endpoint",
+        "simpleValueType": true,
+        "help": "Server API URL. Should be only used with Subdomain integration."
+      },
       {
         "type": "TEXT",
         "name": "tag",
@@ -467,5 +467,3 @@ scenarios:
 ___NOTES___
 
 Created on 30.03.2022, 20:54:30
-
-
