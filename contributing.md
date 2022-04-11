@@ -53,6 +53,6 @@ After changing the template in GTM panel remember to update the `versions` secti
 
 ### Testing
 
-When adding new features remember to provide tests  that can be run inside the template environment in GTM.
+When adding new features remember to provide tests that can be run inside the template environment in GTM.
 
 [Read more about tests in GTM](https://developers.google.com/tag-platform/tag-manager/templates/tests)
