@@ -9,13 +9,13 @@
   </a>
 </p>
 
-##Repository content
+## Repository content
 1. FingerprintJS Pro Google Tag Manager template
 2. FingerprintJS Pro adapter for Google Tag Manager
 
 > :warning: **Work in progress**: This is a beta version of the library
 
-#FingerprintJS Pro Google Tag Manager template
+# FingerprintJS Pro Google Tag Manager template
 
 You can find an example of using this integration on [our website](https://fingerprintjs.com/docs/fingerprintjs-pro-google-tag-manager)
 
@@ -27,7 +27,7 @@ You can find an example of using this integration on [our website](https://finge
 4. Use `FingerprintJSPro.loaded` event to get data from dataLayer. You can create trigger for this event.
 5. Use `Result custom name` field to change the variable name for the result.
 
-##Template Fields
+## Template Fields
 
 You can find more info on the FingerprintJS Pro agent documentation page [https://dev.fingerprintjs.com/docs/js-agent](https://dev.fingerprintjs.com/docs/js-agent)
 
@@ -46,7 +46,7 @@ You can find more info on the FingerprintJS Pro agent documentation page [https:
 
 `Result custom name` - you can specify the result field name in `dataLayer`
 
-#FingerprintJS Pro adapter for Google Tag Manager
+# FingerprintJS Pro adapter for Google Tag Manager
 
 Since GTM ([Google Tag Manager](https://tagmanager.google.com/)) uses a subset of JavaScript API that doesn't support Promises, we created this adapter for the [FingerprintJS Pro JS agent](https://dev.fingerprintjs.com/docs/js-agent) that can be used in a GTM template.
 
