@@ -1,4 +1,4 @@
-# Contributing to FingerprintJS Pro Google Tag Manager
+# Contributing to FingerprintJS Pro adapter for Google Tag Manager
 
 ## Working with code
 
@@ -42,3 +42,17 @@ yarn typecheck
 - Run `yarn release:(major|minor|patch)` depending on the version you need
 - Make a pull request
 - After merging the pull request into the main branch and after successful tests, GitHub Action will publish a new version to the npm
+
+# Contributing to FingerprintJS Pro Google Tag Manager template
+
+### Working with GTM template
+
+After changing the template in GTM panel remember to update the `versions` section in **metadata.yaml**.
+
+[Read more about updating templates](https://developers.google.com/tag-platform/tag-manager/templates/gallery#update_your_template)
+
+### Testing
+
+When adding new features remember to provide tests  that can be run inside the template environment in GTM.
+
+[Read more about tests in GTM](https://developers.google.com/tag-platform/tag-manager/templates/tests)
