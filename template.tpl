@@ -74,6 +74,13 @@ ___TEMPLATE_PARAMETERS___
     "subParams": [
       {
         "type": "TEXT",
+        "name": "scriptUrlPattern",
+        "displayName": "Script Url Pattern",
+        "simpleValueType": true,
+        "help": "Pattern of the JS agent script URL."
+      },
+      {
+        "type": "TEXT",
         "name": "endpoint",
         "displayName": "Endpoint",
         "simpleValueType": true,
@@ -142,6 +149,10 @@ if (data.region) {
 
 if (data.endpoint) {
   loadOptions.endpoint = data.endpoint;
+}
+
+if (data.scriptUrlPattern) {
+  loadOptions.scriptUrlPattern = data.scriptUrlPattern;
 }
 
 const getOptions = {};
@@ -398,6 +409,7 @@ scenarios:
     const mockData = {
       apiKey: 'aspodkasodk',
       region: 'eu',
+      scriptUrlPattern: 'https://domain.some/v<version>/<apiKey>/loader_v<loaderVersion>.js',
       endpoint: 'https://end.point/',
       tag: 'myTag',
       linkedId: 'some-id',
@@ -409,6 +421,7 @@ scenarios:
       integrationInfo: 'fingerprintjs-pro-gtm-template/0.0.1',
       region: 'eu',
       endpoint: 'https://end.point/',
+      scriptUrlPattern: 'https://domain.some/v<version>/<apiKey>/loader_v<loaderVersion>.js',
     };
 
     const expectedGetOptions = {
