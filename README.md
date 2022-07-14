@@ -1,6 +1,10 @@
 <p align="center">
-  <a href="https://fingerprintjs.com">
-    <img src="resources/logo.svg" alt="FingerprintJS" width="312px" />
+  <a href="https://fingerprint.com">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="resources/logo_light.svg" />
+      <source media="(prefers-color-scheme: light)" srcset="resources/logo_dark.svg" />
+      <img src="resources/logo_dark.svg" alt="Fingerprint logo" width="312px" />
+    </picture>
   </a>
 </p>
 <p align="center">
@@ -17,7 +21,7 @@
 
 # FingerprintJS Pro Google Tag Manager template
 
-You can find an example of using this integration on [our website](https://fingerprintjs.com/docs/fingerprintjs-pro-google-tag-manager)
+You can find an example of using this integration on [our website](https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager)
 
 ## Usage
 
@@ -29,26 +33,26 @@ You can find an example of using this integration on [our website](https://finge
 
 ## Template Fields
 
-You can find more info on the FingerprintJS Pro agent documentation page [https://dev.fingerprintjs.com/docs/js-agent](https://dev.fingerprintjs.com/docs/js-agent)
+You can find more info on the FingerprintJS Pro agent documentation page [https://dev.fingerprint.com/docs/js-agent](https://dev.fingerprint.com/docs/js-agent)
 
 `Public API key` - Your public API key that authenticates the agent with the API.
 
-`Region` - The [region](https://dev.fingerprintjs.com/docs/regions) of your subscription.
+`Region` - The [region](https://dev.fingerprint.com/docs/regions) of your subscription.
 
-`Endpoint` - This parameter should only be used with the [Subdomain integration](https://dev.fingerprintjs.com/docs/subdomain-integration)
+`Endpoint` - This parameter should only be used with the [Subdomain integration](https://dev.fingerprint.com/docs/subdomain-integration)
 . Specify your custom endpoint here.
 
 `tag` - a customer-provided value or an object that will be saved together with the identification event and will be returned back to you in a webhook message or when you search for the visit in the server API.
 
-`linkedId` - is a way of linking current identification event with a custom identifier. This will allow you to filter visit information when using the [Server API](https://dev.fingerprintjs.com/docs/server-api)
+`linkedId` - is a way of linking current identification event with a custom identifier. This will allow you to filter visit information when using the [Server API](https://dev.fingerprint.com/docs/server-api)
 
-`Extended result` - The response object includes a confidence score field representing the probability of accurate identification. The extended response object also includes several fields with useful timestamps related to a visitor. See more information on `firstSeenAt/lastSeenAt` timestamps [here](https://dev.fingerprintjs.com/docs/useful-timestamps).
+`Extended result` - The response object includes a confidence score field representing the probability of accurate identification. The extended response object also includes several fields with useful timestamps related to a visitor. See more information on `firstSeenAt/lastSeenAt` timestamps [here](https://dev.fingerprint.com/docs/useful-timestamps).
 
 `Result custom name` - you can specify the result field name in `dataLayer`
 
 # FingerprintJS Pro adapter for Google Tag Manager
 
-Since GTM ([Google Tag Manager](https://tagmanager.google.com/)) uses a subset of JavaScript API that doesn't support Promises, we created this adapter for the [FingerprintJS Pro JS agent](https://dev.fingerprintjs.com/docs/js-agent) that can be used in a GTM template.
+Since GTM ([Google Tag Manager](https://tagmanager.google.com/)) uses a subset of JavaScript API that doesn't support Promises, we created this adapter for the [FingerprintJS Pro JS agent](https://dev.fingerprint.com/docs/js-agent) that can be used in a GTM template.
 
 Adapter code hosted on CDN and accessible via the next URL `https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v0/iife.min.js`
 

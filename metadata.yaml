@@ -1,5 +1,7 @@
-homepage: "https://fingerprintjs.com"
-documentation: "https://dev.fingerprintjs.com/docs/fingerprintjs-pro-google-tag-manager"
+homepage: "https://fingerprint.com"
+documentation: "https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager"
 versions:
+  - sha: a785033409d59fcc61b00af3cb556bf775bb28e2
+    changeNotes: Add scriptUrlPattern js-agent load option.
   - sha: 6f8ee49521acc4cbf99892b88d82fe11b200c3fb
     changeNotes: Initial release.
