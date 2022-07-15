@@ -26,7 +26,7 @@ You can find an example of using this integration on [our website](https://dev.f
 ## Usage
 
 1. You should have FingerprintJS account
-2. Add FingerprintJS Pro Tag in your GTM admin panel (you can find it in the [community template gallery](https://tagmanager.google.com/gallery/) or just import from [github repo](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/blob/master/template.tpl))
+2. Add FingerprintJS Pro Tag in your GTM admin panel (you can import it from [github repo](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/blob/master/template.tpl))
 3. Set up the public API key and choose the region
 4. Use `FingerprintJSPro.loaded` event to get data from dataLayer. You can create trigger for this event.
 5. Use `Result custom name` field to change the variable name for the result.
