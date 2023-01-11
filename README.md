@@ -87,3 +87,9 @@ const onFailure = () => {
 injectScript(url, onSuccess, onFailure);
 
 ```
+
+## Limitations
+
+Some advanced JavaScript agent properties (`tlsEndpoint`, `disableTls`, `storageKey`, and `scriptUrlPattern`) are not currently supported. If you require to use these features in the GTM, please contact [support](mailto:support@fingerprintjs.com).
+
+Ad-blocking browser extensions such as AdBlock, uBlock Origin, etc., can block all scripts served by Google Tag Manager, including Fingerprint. If this is a problem for your use case, see Google Tag Manager documentation for [Server-side tagging](https://developers.google.com/tag-platform/tag-manager/server-side) and [Custom domain configuration](https://developers.google.com/tag-platform/tag-manager/server-side/custom-domain).
