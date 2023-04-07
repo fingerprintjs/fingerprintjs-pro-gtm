@@ -154,6 +154,7 @@ const queryPermission = require('queryPermission');
 const callInWindow = require('callInWindow');
 const createQueue = require('createQueue');
 const copyFromWindow = require('copyFromWindow');
+const getTimestampMillis = require('getTimestampMillis');
 
 const url = 'https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v1/iife.min.js';
 
@@ -197,9 +198,12 @@ log('getOptions=', getOptions);
 
 const dataLayerPush = createQueue('dataLayer');
 
+let getStartTime;
 const onFpJsGet = (result) => {
   log('result', result);
+  const getFinishTime = getTimestampMillis();
   const event = {event: 'FingerprintJSPro.identified'};
+  result.timeToIdentifyMs = getFinishTime - getStartTime;
   event[data.resultCustomName] = result;
   dataLayerPush(event);
   data.gtmOnSuccess();
@@ -207,6 +211,7 @@ const onFpJsGet = (result) => {
 
 const doIdentification = () => {
   log('doIdentification');
+  getStartTime = getTimestampMillis();
   if (queryPermission('access_globals', 'execute', 'FingerprintjsProGTM.get')) {
     callInWindow('FingerprintjsProGTM.get', getOptions, onFpJsGet);
   } else {
