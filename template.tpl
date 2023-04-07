@@ -33,6 +33,27 @@ ___TEMPLATE_PARAMETERS___
 
 [
   {
+    "type": "SELECT",
+    "name": "tagType",
+    "displayName": "Tag type",
+    "macrosInSelect": false,
+    "selectItems": [
+      {
+        "value": "default",
+        "displayValue": "Load and identify"
+      },
+      {
+        "value": "load",
+        "displayValue": "Load"
+      },
+      {
+        "value": "get",
+        "displayValue": "Identify"
+      }
+    ],
+    "simpleValueType": true
+  },
+  {
     "type": "TEXT",
     "name": "apiKey",
     "simpleValueType": true,
@@ -134,13 +155,15 @@ const callInWindow = require('callInWindow');
 const createQueue = require('createQueue');
 const copyFromWindow = require('copyFromWindow');
 
-const url = 'https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v0/iife.min.js';
+const url = 'https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v1/iife.min.js';
 
 log('data =', data);
 
+const tagType = data.tagType;
+
 const loadOptions = {
   apiKey: data.apiKey,
-  integrationInfo: 'fingerprintjs-pro-gtm-template/0.0.1',
+  integrationInfo: 'fingerprintjs-pro-gtm-template/1.0.0',
 };
 
 if (data.region) {
@@ -172,19 +195,41 @@ if (data.extendedResult) {
 log('loadOptions =', loadOptions);
 log('getOptions=', getOptions);
 
+const dataLayerPush = createQueue('dataLayer');
+
+const onFpJsGet = (result) => {
+  log('result', result);
+  const event = {event: 'FingerprintJSPro.identified'};
+  event[data.resultCustomName] = result;
+  dataLayerPush(event);
+  data.gtmOnSuccess();
+};
+
+const doIdentification = () => {
+  log('doIdentification');
+  if (queryPermission('access_globals', 'execute', 'FingerprintjsProGTM.get')) {
+    callInWindow('FingerprintjsProGTM.get', getOptions, onFpJsGet);
+  } else {
+    log('FingerprintJS: Identification failed due to permissions mismatch.');
+    data.gtmOnFailure();
+  }
+};
+
 const onSuccess = () => {
   log('FingerprintJS: Script loaded successfully.');
 
-  const onFpJsLoad = (result) => {
-    log('result', result);
-    const dataLayerPush = createQueue('dataLayer');
+  const onFpJsLoad = () => {
     const event = {event: 'FingerprintJSPro.loaded'};
-    event[data.resultCustomName] = result;
     dataLayerPush(event);
-    data.gtmOnSuccess();
+    log('loaded');
+    if (tagType === 'default') {
+      doIdentification();
+    } else {
+      data.gtmOnSuccess();
+    }
   };
 
-  callInWindow('FingerprintjsProGTM.load', loadOptions, getOptions, onFpJsLoad);
+  callInWindow('FingerprintjsProGTM.load', loadOptions, onFpJsLoad);
 };
 
 // If the script fails to load, log a message and signal failure
@@ -193,12 +238,16 @@ const onFailure = () => {
   data.gtmOnFailure();
 };
 
-if (queryPermission('inject_script', url) && queryPermission('access_globals', 'execute', 'FingerprintjsProGTM.load')) {
-  log('try to load');
-  injectScript(url, onSuccess, onFailure);
+if (tagType === 'default' || tagType === 'load') {
+  if (queryPermission('inject_script', url) && queryPermission('access_globals', 'execute', 'FingerprintjsProGTM.load')) {
+    log('try to load');
+    injectScript(url, onSuccess, onFailure);
+  } else {
+    log('FingerprintJS: Script load failed due to permissions mismatch.');
+    data.gtmOnFailure();
+  }
 } else {
-  log('FingerprintJS: Script load failed due to permissions mismatch.');
-  data.gtmOnFailure();
+  doIdentification();
 }
 
 
@@ -240,7 +289,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v0/iife.min.js"
+                "string": "https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v1/iife.min.js"
               }
             ]
           }
@@ -341,6 +390,45 @@ ___WEB_PERMISSIONS___
                     "boolean": false
                   }
                 ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "FingerprintjsProGTM.get"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
               }
             ]
           }
@@ -358,9 +446,10 @@ ___WEB_PERMISSIONS___
 ___TESTS___
 
 scenarios:
-- name: check loading
+- name: check loading default tag
   code: |-
     const mockData = {
+      tagType: 'default',
       apiKey: 'aspodkasodk',
     };
 
@@ -368,8 +457,12 @@ scenarios:
       onSuccess();
     });
 
-    mock('callInWindow', function(fname, getOptions, loadOptions, callback) {
-      callback({visitorId: 'qwerty'});
+    mock('callInWindow', function(fname, options, callback) {
+      if (fname === 'FingerprintjsProGTM.load') {
+        callback();
+      } else if(fname === 'FingerprintjsProGTM.get') {
+        callback({visitorId: 'qwerty'});
+      }
     });
 
     // Call runCode to run the template's code.
@@ -382,22 +475,27 @@ scenarios:
 - name: check loadOptions ang getOptions with minimum params
   code: |-
     const mockData = {
+      tagType: 'default',
       apiKey: 'aspodkasodk',
     };
 
     const expectedLoadOptions = {
       apiKey: 'aspodkasodk',
-      integrationInfo: 'fingerprintjs-pro-gtm-template/0.0.1',
+      integrationInfo: 'fingerprintjs-pro-gtm-template/1.0.0',
     };
 
     mock('injectScript', function(url, onSuccess, onFail) {
       onSuccess();
     });
 
-    mock('callInWindow', function(fname, loadOptions, getOptions, callback) {
-      assertThat(loadOptions).isEqualTo(expectedLoadOptions);
-      assertThat(getOptions).isEqualTo({});
-      callback({visitorId: 'qwerty'});
+    mock('callInWindow', function(fname, options, callback) {
+      if (fname === 'FingerprintjsProGTM.load') {
+        assertThat(options).isEqualTo(expectedLoadOptions);
+        callback();
+      } else if(fname === 'FingerprintjsProGTM.get') {
+        assertThat(options).isEqualTo({});
+        callback({visitorId: 'qwerty'});
+      }
     });
 
     // Call runCode to run the template's code.
@@ -407,6 +505,7 @@ scenarios:
 - name: check loadOptions ang getOptions with maximum params
   code: |-
     const mockData = {
+      tagType: 'default',
       apiKey: 'aspodkasodk',
       region: 'eu',
       scriptUrlPattern: 'https://domain.some/v<version>/<apiKey>/loader_v<loaderVersion>.js',
@@ -418,7 +517,7 @@ scenarios:
 
     const expectedLoadOptions = {
       apiKey: 'aspodkasodk',
-      integrationInfo: 'fingerprintjs-pro-gtm-template/0.0.1',
+      integrationInfo: 'fingerprintjs-pro-gtm-template/1.0.0',
       region: 'eu',
       endpoint: 'https://end.point/',
       scriptUrlPattern: 'https://domain.some/v<version>/<apiKey>/loader_v<loaderVersion>.js',
@@ -435,10 +534,14 @@ scenarios:
       onSuccess();
     });
 
-    mock('callInWindow', function(fname, loadOptions, getOptions, callback) {
-      assertThat(loadOptions).isEqualTo(expectedLoadOptions);
-      assertThat(getOptions).isEqualTo(expectedGetOptions);
-      callback({visitorId: 'qwerty'});
+    mock('callInWindow', function(fname, options, callback) {
+      if (fname === 'FingerprintjsProGTM.load') {
+        assertThat(options).isEqualTo(expectedLoadOptions);
+        callback();
+      } else if(fname === 'FingerprintjsProGTM.get') {
+        assertThat(options).isEqualTo(expectedGetOptions);
+        callback({visitorId: 'qwerty'});
+      }
     });
 
     // Call runCode to run the template's code.
@@ -448,6 +551,7 @@ scenarios:
 - name: check visitorIdCustomName field works
   code: |-
     const mockData = {
+      tagType: 'get',
       apiKey: 'aspodkasodk',
       visitorIdCustomName: 'fingerprintJsProVisitorId',
       resultCustomName: 'result'
@@ -457,14 +561,18 @@ scenarios:
       onSuccess();
     });
 
-    mock('callInWindow', function(fname, getOptions, loadOptions, callback) {
-      callback({visitorId: 'qwerty'});
+    mock('callInWindow', function(fname, options, callback) {
+      if (fname === 'FingerprintjsProGTM.load') {
+        callback();
+      } else if(fname === 'FingerprintjsProGTM.get') {
+        callback({visitorId: 'qwerty'});
+      }
     });
 
     mock('createQueue', function(name) {
       return function(params) {
         assertThat(params).isEqualTo({
-          event: 'FingerprintJSPro.loaded',
+          event: 'FingerprintJSPro.identified',
           result: {visitorId: 'qwerty'},
         });
       };
