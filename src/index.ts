@@ -1,2 +1,2 @@
-import { load } from './load'
-export { load }
+import { load, get } from './load'
+export { load, get }

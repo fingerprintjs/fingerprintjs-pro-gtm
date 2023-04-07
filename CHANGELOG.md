@@ -1,3 +1,33 @@
+## 1.0.0 (2023-04-07)
+
+##### Chores
+
+* **deps:**
+  *  bump json5 from 2.2.0 to 2.2.3 ([67fc05a9](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/67fc05a9858b57fc19c70bebd58e9a97337e7b62))
+  *  bump rollup-plugin-license ([27dae632](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/27dae63247d86cb0854354a7261527ae4db4503a))
+  *  bump minimist from 1.2.5 to 1.2.6 ([7472efba](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/7472efbafe4386187b59fd06dc4c9de283ac513e))
+*  add production environment for publish task ([09a15c0a](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/09a15c0a0140693179f402bbaeb94a3683aaf317))
+*  update documentation link ([58cfb7ee](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/58cfb7ee8ce18773e4aa5af141e59d5d966c2f67))
+
+##### Documentation Changes
+
+*  rename the custom subdomain feature name ([89038318](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/8903831891281cd93f753d003965803b508e7336))
+*  update Fingerprint logo ([d0fa722c](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/d0fa722c2f55bcaf59c4aaefe098544010ed92ac))
+*  replace fingerprintjs.com to fingerprint.com ([a7850334](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/a785033409d59fcc61b00af3cb556bf775bb28e2))
+*  remove whitespace ([ada10547](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/ada1054748f77a776c6f6f518a59471b3ee95704))
+*  Split contributing file into 2 products ([e5c21832](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/e5c21832c09a76e028c7b7b013d22088ccb4f9f1))
+*  Add CODEOWNERS ([d5a05a0b](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/d5a05a0b6bfbe60986c82817d35c0f00cb0228e0))
+*  Add contributing rules ([e2516fbb](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/e2516fbb737976707cc941913610d1076284335a))
+*  fix markdown for headers in readme ([9de5a154](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/9de5a154c8a793d4035cd305d565388c9739a305))
+*  update readme ([35382e8d](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/35382e8da075ac869a63faa95f5de6f41e349a6c))
+*  change license to Apache 2.0 ([e8bdac2d](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/e8bdac2d91e890e934ce9c6bd23b2feed91a54fe))
+*  update description ([44cf8079](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/44cf8079f9335b1105c31341628fc78aaa312a0a))
+* **README:**  remove GTM Gallery mention ([cc08755f](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/cc08755fbbaea55a6707a388b83db56cef4c745d))
+
+##### New Features
+
+*  separate `load` and `get` logic ([188d2e89](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/188d2e89d880c9efd5e1171d6adef13b901054a0))
+
 ## 0.3.0 (2022-03-29)
 
 ##### Chores
