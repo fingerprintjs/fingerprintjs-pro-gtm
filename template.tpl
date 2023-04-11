@@ -63,7 +63,19 @@ ___TEMPLATE_PARAMETERS___
         "type": "NON_EMPTY"
       }
     ],
-    "help": "Your public API key that authenticates the agent with the API"
+    "help": "Your public API key that authenticates the agent with the API",
+    "enablingConditions": [
+      {
+        "paramName": "tagType",
+        "paramValue": "default",
+        "type": "EQUALS"
+      },
+      {
+        "paramName": "tagType",
+        "paramValue": "load",
+        "type": "EQUALS"
+      }
+    ]
   },
   {
     "type": "SELECT",
@@ -85,7 +97,19 @@ ___TEMPLATE_PARAMETERS___
       }
     ],
     "simpleValueType": true,
-    "help": "Which region to use"
+    "help": "Which region to use",
+    "enablingConditions": [
+      {
+        "paramName": "tagType",
+        "paramValue": "default",
+        "type": "EQUALS"
+      },
+      {
+        "paramName": "tagType",
+        "paramValue": "load",
+        "type": "EQUALS"
+      }
+    ]
   },
   {
     "type": "GROUP",
@@ -94,49 +118,89 @@ ___TEMPLATE_PARAMETERS___
     "groupStyle": "ZIPPY_CLOSED",
     "subParams": [
       {
-        "type": "TEXT",
-        "name": "scriptUrlPattern",
-        "displayName": "Script Url Pattern",
-        "simpleValueType": true,
-        "help": "Pattern of the JS agent script URL."
-      },
-      {
-        "type": "TEXT",
-        "name": "endpoint",
-        "displayName": "Endpoint",
-        "simpleValueType": true,
-        "help": "Server API URL. Should be only used with Subdomain integration."
-      },
-      {
-        "type": "TEXT",
-        "name": "tag",
-        "displayName": "tag",
-        "simpleValueType": true,
-        "help": "A customer-provided value or an object that will be saved together with the identification event"
-      },
-      {
-        "type": "TEXT",
-        "name": "linkedId",
-        "displayName": "linkedId",
-        "simpleValueType": true,
-        "help": "A way of linking current identification event with a custom identifier"
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "extendedResult",
-        "checkboxText": "Extended result",
-        "simpleValueType": true
-      },
-      {
-        "type": "TEXT",
-        "name": "resultCustomName",
-        "displayName": "Result custom name",
-        "simpleValueType": true,
-        "help": "You can change result variable name that emits in dataLayer",
-        "defaultValue": "FingerprintJSProResult",
-        "valueValidators": [
+        "type": "GROUP",
+        "name": "Agent settings",
+        "displayName": "",
+        "groupStyle": "NO_ZIPPY",
+        "subParams": [
           {
-            "type": "NON_EMPTY"
+            "type": "TEXT",
+            "name": "scriptUrlPattern",
+            "displayName": "Script Url Pattern",
+            "simpleValueType": true,
+            "help": "Pattern of the JS agent script URL."
+          },
+          {
+            "type": "TEXT",
+            "name": "endpoint",
+            "displayName": "Endpoint",
+            "simpleValueType": true,
+            "help": "Server API URL. Should be only used with Subdomain integration."
+          }
+        ],
+        "enablingConditions": [
+          {
+            "paramName": "tagType",
+            "paramValue": "default",
+            "type": "EQUALS"
+          },
+          {
+            "paramName": "tagType",
+            "paramValue": "load",
+            "type": "EQUALS"
+          }
+        ]
+      },
+      {
+        "type": "GROUP",
+        "name": "Identification settings",
+        "displayName": "",
+        "groupStyle": "NO_ZIPPY",
+        "subParams": [
+          {
+            "type": "TEXT",
+            "name": "tag",
+            "displayName": "tag",
+            "simpleValueType": true,
+            "help": "A customer-provided value or an object that will be saved together with the identification event"
+          },
+          {
+            "type": "TEXT",
+            "name": "linkedId",
+            "displayName": "linkedId",
+            "simpleValueType": true,
+            "help": "A way of linking current identification event with a custom identifier"
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "extendedResult",
+            "checkboxText": "Extended result",
+            "simpleValueType": true
+          },
+          {
+            "type": "TEXT",
+            "name": "resultCustomName",
+            "displayName": "Result custom name",
+            "simpleValueType": true,
+            "help": "You can change result variable name that emits in dataLayer",
+            "defaultValue": "FingerprintJSProResult",
+            "valueValidators": [
+              {
+                "type": "NON_EMPTY"
+              }
+            ]
+          }
+        ],
+        "enablingConditions": [
+          {
+            "paramName": "tagType",
+            "paramValue": "default",
+            "type": "EQUALS"
+          },
+          {
+            "paramName": "tagType",
+            "paramValue": "get",
+            "type": "EQUALS"
           }
         ]
       }
@@ -477,6 +541,58 @@ scenarios:
     assertApi('createQueue').wasCalled();
     // Verify that the tag finished successfully.
     assertApi('gtmOnSuccess').wasCalled();
+- name: check loading load tag
+  code: |-
+    const mockData = {
+      tagType: 'load',
+      apiKey: 'aspodkasodk',
+    };
+
+    mock('injectScript', function(url, onSuccess, onFail) {
+      onSuccess();
+    });
+
+    mock('callInWindow', function(fname, options, callback) {
+      if (fname === 'FingerprintjsProGTM.load') {
+        callback();
+      } else if(fname === 'FingerprintjsProGTM.get') {
+        fail('Tag called get funciton');
+      }
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockData);
+
+    assertApi('injectScript').wasCalled();
+    assertApi('createQueue').wasCalled();
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+- name: check loading get tag
+  code: |-
+    const mockData = {
+      tagType: 'get',
+      apiKey: 'aspodkasodk',
+    };
+
+    mock('injectScript', function(url, onSuccess, onFail) {
+      onSuccess();
+    });
+
+    mock('callInWindow', function(fname, options, callback) {
+      if (fname === 'FingerprintjsProGTM.load') {
+        fail('Tag called load funciton');
+      } else if(fname === 'FingerprintjsProGTM.get') {
+        callback({visitorId: 'qwerty'});
+      }
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockData);
+
+    assertApi('injectScript').wasNotCalled();
+    assertApi('createQueue').wasCalled();
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
 - name: check loadOptions ang getOptions with minimum params
   code: |-
     const mockData = {
@@ -578,7 +694,7 @@ scenarios:
       return function(params) {
         assertThat(params).isEqualTo({
           event: 'FingerprintJSPro.identified',
-          result: {visitorId: 'qwerty'},
+          result: {visitorId: 'qwerty', timeToIdentifyMs: 0},
         });
       };
     });
