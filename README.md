@@ -35,6 +35,11 @@ You can find an example of using this integration on [our website](https://dev.f
 
 You can find more info on the FingerprintJS Pro agent documentation page [https://dev.fingerprint.com/docs/js-agent](https://dev.fingerprint.com/docs/js-agent)
 
+`Tag type` - The way you want to use the tag. It is 3 options:
+  - `Load and identify` – default behavior. Load JS Agent and instantly identify browser.
+  - `Load` – just load JS Agent.
+  - `Identify` - identify browser. JS Agent needs to be loaded before. You can collect necessary data, then trigger this tag and provide `linkedId` or `tag`.
+
 `Public API key` - Your public API key that authenticates the agent with the API.
 
 `Region` - The [region](https://dev.fingerprint.com/docs/regions) of your subscription.
