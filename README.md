@@ -17,8 +17,6 @@
 1. FingerprintJS Pro Google Tag Manager template
 2. FingerprintJS Pro adapter for Google Tag Manager
 
-> :warning: **Work in progress**: This is a beta version of the library
-
 # FingerprintJS Pro Google Tag Manager template
 
 You can find an example of using this integration on [our website](https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager)
