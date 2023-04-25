@@ -182,7 +182,7 @@ ___TEMPLATE_PARAMETERS___
             "name": "resultCustomName",
             "displayName": "Result custom name",
             "simpleValueType": true,
-            "help": "You can change result variable name that emits in dataLayer",
+            "help": "You can change the name of the result variable emitted to the dataLayer",
             "defaultValue": "FingerprintJSProResult",
             "valueValidators": [
               {
