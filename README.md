@@ -13,33 +13,34 @@
   </a>
 </p>
 
-## Repository content
-1. FingerprintJS Pro Google Tag Manager template
-2. FingerprintJS Pro adapter for Google Tag Manager
+# Fingerprint Pro Google Tag Manager template
 
-> :warning: **Work in progress**: This is a beta version of the library
+This repository contains a Google Tag Manager template you can use to add [Fingerprint Pro](https://fingerprint.com/) to your website.  
 
-# FingerprintJS Pro Google Tag Manager template
-
-You can find an example of using this integration on [our website](https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager)
+For step-by-step instructions on using this integration, see the full [Google Tag Manager guide](https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager) in the Fingeprint Pro documentation.
 
 ## Usage
 
-1. You should have FingerprintJS account
-2. Add FingerprintJS Pro Tag in your GTM admin panel (you can import it from [github repo](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/blob/master/template.tpl))
-3. Set up the public API key and choose the region
-4. Use `FingerprintJSPro.loaded` event to get data from dataLayer. You can create trigger for this event.
-5. Use `Result custom name` field to change the variable name for the result.
+1. [Sign up](https://dashboard.fingerprint.com/signup) for a Fingerprint Pro account if you haven't already.
+2. Import this [template](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/blob/main/template.tpl) into your Google Tag Manager workspace.
+3. Add a Fingerprint Pro tag to your website. You will need your public API key and application region.
+4. Use the `FingerprintJSProResult` or your own *Custom result name* to access the Fingerprint Pro result in GTM's `dataLayer`.
+5. Use `FingerprintJSPro.loaded` and `FingerprintJSPro.identified` to create custom events and trigger actions after the JS agent is loaded or the visitor is identified. 
 
 ## Template Fields
 
-You can find more info on the FingerprintJS Pro agent documentation page [https://dev.fingerprint.com/docs/js-agent](https://dev.fingerprint.com/docs/js-agent)
+For more information and the full API reference, see [Fingerprint Pro JS Agent](https://dev.fingerprint.com/docs/js-agent) in our documentation.
+
+`Tag type` – The way you want to use the tag. There are 3 options:
+  - `Load and identify` – the default behavior. Load the JS agent and identify the browser immediately. If you want to load the JS agent first and identify the browser later based on some event, use two separate `Load` and `Identify` Fingerprint Pro tags. 
+  - `Load` – only load the JS Agent.
+  - `Identify` – identify the browser. The JS Agent must be loaded before. You can collect additional metadata data first and then trigger this tag with the metadata inside `linkedId` or `tag`.
 
 `Public API key` - Your public API key that authenticates the agent with the API.
 
 `Region` - The [region](https://dev.fingerprint.com/docs/regions) of your subscription.
 
-`Endpoint` - This parameter should only be used with the [Custom subdomain](https://dev.fingerprint.com/docs/subdomain-integration). Specify your custom endpoint here.
+`Endpoint` - This parameter should only be used with Custom subdomain setup or Proxy integration. Specify your custom endpoint here.
 
 `tag` - a customer-provided value or an object that will be saved together with the identification event and will be returned back to you in a webhook message or when you search for the visit in the server API.
 
@@ -47,49 +48,10 @@ You can find more info on the FingerprintJS Pro agent documentation page [https:
 
 `Extended result` - The response object includes a confidence score field representing the probability of accurate identification. The extended response object also includes several fields with useful timestamps related to a visitor. See more information on `firstSeenAt/lastSeenAt` timestamps [here](https://dev.fingerprint.com/docs/useful-timestamps).
 
-`Result custom name` - you can specify the result field name in `dataLayer`
-
-# FingerprintJS Pro adapter for Google Tag Manager
-
-Since GTM ([Google Tag Manager](https://tagmanager.google.com/)) uses a subset of JavaScript API that doesn't support Promises, we created this adapter for the [FingerprintJS Pro JS agent](https://dev.fingerprint.com/docs/js-agent) that can be used in a GTM template.
-
-Adapter code hosted on CDN and accessible via the next URL `https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v0/iife.min.js`
-
-More information about CDN you can get in [CDN repository](https://github.com/fingerprintjs/cdn)
-
-## Example of usage
-
-In GTM template we can load FingerprintJS Pro this way:
-
-```javascript
-const injectScript = require('injectScript');
-const callInWindow = require('callInWindow');
-const url = 'https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v0/iife.min.js';
-
-const onSuccess = () => {
-  const onFpJsLoad = (result) => {
-    const dataLayerPush = createQueue('dataLayer');
-    dataLayerPush({
-      event: 'FingerprintJS.loaded',
-      visitorId: result.visitorId
-    });
-    data.gtmOnSuccess();
-  };
-
-  callInWindow('FingerprintjsProGTM.load', {apiKey: data.apiKey}, onFpJsLoad);
-};
-
-// If the script fails to load, log a message and signal failure
-const onFailure = () => {
-  data.gtmOnFailure();
-};
-
-injectScript(url, onSuccess, onFailure);
-
-```
+`Result custom name` - you can specify the result field name in `dataLayer`.
 
 ## Limitations
 
-Some advanced JavaScript agent properties (`tlsEndpoint`, `disableTls`, `storageKey`, and `scriptUrlPattern`) are not currently supported. If you require to use these features in the GTM, please contact [support](mailto:support@fingerprintjs.com).
+Some advanced JavaScript agent properties (`tlsEndpoint`, `disableTls`, and `storageKey`) are not currently supported. If you require to use these features in the GTM, please contact [support](mailto:support@fingerprint.com).
 
 Ad-blocking browser extensions such as AdBlock, uBlock Origin, etc., can block all scripts served by Google Tag Manager, including Fingerprint. If this is a problem for your use case, see Google Tag Manager documentation for [Server-side tagging](https://developers.google.com/tag-platform/tag-manager/server-side) and [Custom domain configuration](https://developers.google.com/tag-platform/tag-manager/server-side/custom-domain).
