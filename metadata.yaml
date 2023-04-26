@@ -1,6 +1,8 @@
 homepage: "https://fingerprint.com"
 documentation: "https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager"
 versions:
+  - sha: 311c586050a95aff5e7d0dd0fcae6688c01d043a
+    changeNotes: Allow using `tagType` to load the script and identify visitor separately, update documentation
   - sha: 8903831891281cd93f753d003965803b508e7336
     changeNotes: Update Endpoint param description
   - sha: a785033409d59fcc61b00af3cb556bf775bb28e2
