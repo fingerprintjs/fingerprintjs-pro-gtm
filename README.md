@@ -22,7 +22,7 @@ For step-by-step instructions on using this integration, see the full [Google Ta
 ## Usage
 
 1. [Sign up](https://dashboard.fingerprint.com/signup) for a Fingerprint Pro account if you haven't already.
-2. Import this [template](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/blob/master/template.tpl) into your Google Tag Manager workspace.
+2. Import this [template](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/blob/main/template.tpl) into your Google Tag Manager workspace.
 3. Add a Fingerprint Pro tag to your website. You will need your public API key and application region.
 4. Use the `FingerprintJSProResult` or your own *Custom result name* to access the Fingerprint Pro result in GTM's `dataLayer`.
 5. Use `FingerprintJSPro.loaded` and `FingerprintJSPro.identified` to create custom events and trigger actions after the JS agent is loaded or the visitor is identified. 
