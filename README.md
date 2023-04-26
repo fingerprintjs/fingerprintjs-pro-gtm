@@ -33,10 +33,10 @@ You can find an example of using this integration on [our website](https://dev.f
 
 You can find more info on the FingerprintJS Pro agent documentation page [https://dev.fingerprint.com/docs/js-agent](https://dev.fingerprint.com/docs/js-agent)
 
-`Tag type` - The way you want to use the tag. There are 3 options:
-  - `Load and identify` – default behavior. Load the JS Agent and identify the browser immediately.
-  - `Load` – load the JS Agent only.
-  - `Identify` - identify the browser. The JS Agent must be loaded before. Collect necessary data, first, and then trigger this tag and provide `linkedId` or `tag`.
+`Tag type` – The way you want to use the tag. There are 3 options:
+  - `Load and identify` – the default behavior. Load the JS agent and identify the browser immediately. If you want to load the JS agent first and identify the browser later based on some event, use two separate `Load` and `Identify` Fingerprint Pro tags. 
+  - `Load` – only load the JS Agent.
+  - `Identify` – identify the browser. The JS Agent must be loaded before. You can collect additional metadata data first and then trigger this tag with the metadata inside `linkedId` or `tag`.
 
 `Public API key` - Your public API key that authenticates the agent with the API.
 
