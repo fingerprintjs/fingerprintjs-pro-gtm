@@ -40,7 +40,7 @@ For more information and the full API reference, see [Fingerprint Pro JS Agent](
 
 `Region` - The [region](https://dev.fingerprint.com/docs/regions) of your subscription.
 
-`Endpoint` - This parameter should only be used with the [Custom subdomain](https://dev.fingerprint.com/docs/subdomain-integration). Specify your custom endpoint here.
+`Endpoint` - This parameter should only be used with Custom subdomain setup or Proxy integration. Specify your custom endpoint here.
 
 `tag` - a customer-provided value or an object that will be saved together with the identification event and will be returned back to you in a webhook message or when you search for the visit in the server API.
 
