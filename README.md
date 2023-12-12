@@ -19,6 +19,14 @@ This repository contains a Google Tag Manager template you can use to add [Finge
 
 For step-by-step instructions on using this integration, see the full [Google Tag Manager guide](https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager) in the Fingeprint Pro documentation.
 
+## Requirements
+
+The following dependencies are required:
+
+- Node 16+
+- Typescript 4.5
+
+
 ## Usage
 
 1. [Sign up](https://dashboard.fingerprint.com/signup) for a Fingerprint Pro account if you haven't already.
@@ -55,3 +63,12 @@ For more information and the full API reference, see [Fingerprint Pro JS Agent](
 Some advanced JavaScript agent properties (`tlsEndpoint`, `disableTls`, and `storageKey`) are not currently supported. If you require to use these features in the GTM, please contact [support](mailto:support@fingerprint.com).
 
 Ad-blocking browser extensions such as AdBlock, uBlock Origin, etc., can block all scripts served by Google Tag Manager, including Fingerprint. If this is a problem for your use case, see Google Tag Manager documentation for [Server-side tagging](https://developers.google.com/tag-platform/tag-manager/server-side) and [Custom domain configuration](https://developers.google.com/tag-platform/tag-manager/server-side/custom-domain).
+
+## Support and Feedback
+
+To report problems, ask questions or provide feedback, please use [Issues](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/issues). 
+If you need private support, you can email us at [oss-support@fingerprint.com](mailto:oss-support@fingerprint.com).
+
+## License
+
+This project is licensed under the [MIT license](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/blob/main/LICENSE).
