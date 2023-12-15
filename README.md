@@ -24,7 +24,7 @@ For step-by-step instructions on using this integration, see the full [Google Ta
 The following dependencies are required:
 
 - Node 16+
-- Typescript 4.5
+- Typescript 4.5+
 
 
 ## Usage
