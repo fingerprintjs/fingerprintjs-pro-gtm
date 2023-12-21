@@ -10,6 +10,13 @@ Adapter code hosted on CDN and accessible via the next URL `https://opencdn.fpjs
 
 More information about CDN you can get in [CDN repository](https://github.com/fingerprintjs/cdn)
 
+## Requirements
+
+The following dependencies are required:
+
+- Node 16+
+- Typescript 4.5+
+
 ## Example of usage
 
 In GTM template we can load FingerprintJS Pro this way:
