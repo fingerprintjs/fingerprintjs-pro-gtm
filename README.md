@@ -19,13 +19,6 @@ This repository contains a Google Tag Manager template you can use to add [Finge
 
 For step-by-step instructions on using this integration, see the full [Google Tag Manager guide](https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager) in the Fingeprint Pro documentation.
 
-## Requirements
-
-The following dependencies are required:
-
-- Node 16+
-- Typescript 4.5+
-
 
 ## Usage
 
