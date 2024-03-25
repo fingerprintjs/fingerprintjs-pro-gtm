@@ -22,7 +22,7 @@ async function main() {
     throw new Error('Missing required args')
   }
 
-  metadata.versions.push({ sha, changeNotes })
+  metadata.versions.unshift({ sha, changeNotes })
 
   fs.writeFileSync(metadataPath, yaml.stringify(metadata))
 }
