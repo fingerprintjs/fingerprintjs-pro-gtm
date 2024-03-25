@@ -14,8 +14,8 @@ More information about CDN you can get in [CDN repository](https://github.com/fi
 
 The following dependencies are required:
 
-- Node 16+
-- Typescript 4.5+
+- Node 20+
+- Typescript 5+
 
 ## Example of usage
 
@@ -86,10 +86,15 @@ yarn typecheck
 ```
 
 ### How to publish
-- Create a new branch
-- Run `yarn release:(major|minor|patch)` depending on the version you need
-- Make a pull request
-- After merging the pull request into the main branch and after successful tests, GitHub Action will publish a new version to the npm
+The library is automatically released and published on every push to the main branch if there are relevant changes using [semantic-release](https://github.com/semantic-release/semantic-release) with following plugins:
+* [@semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
+* [@semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
+* [@semantic-release/changelog](https://github.com/semantic-release/changelog)
+* [@semantic-release/npm](https://github.com/semantic-release/npm)
+* [@semantic-release/exec](https://github.com/semantic-release/exec)
+* [@semantic-release/github](https://github.com/semantic-release/github)
+
+The workflow must be approved by one of the maintainers, first.
 
 # Contributing to Fingerprint Pro Google Tag Manager template
 
