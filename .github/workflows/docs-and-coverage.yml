@@ -1,0 +1,13 @@
+name: Generate docs and coverage report
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  skip-docs-step:
+    name: Generate coverage report
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/docs-and-coverage.yml@v1
+    with:
+      skip-docs-setp: true
