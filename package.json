@@ -4,6 +4,7 @@
   "description": "FingerprintJS pro version adapter for Google Tag Manager",
   "author": "FingerprintJS, Inc (https://fingerprint.com)",
   "license": "MIT",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/fingerprintjs/fingerprintjs-pro-gtm.git"
