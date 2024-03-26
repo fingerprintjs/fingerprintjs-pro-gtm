@@ -1,17 +1,9 @@
 {
+  "extends": "@fingerprintjs/tsconfig-dx-team/tsconfig.json",
   "compilerOptions": {
     "module": "esnext",
     "moduleResolution": "node",
-    "target": "es6",
-    "resolveJsonModule": true,
-    "importHelpers": true,
-    "allowSyntheticDefaultImports": true,
-    "noErrorTruncation": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "exactOptionalPropertyTypes": true
+    "target": "es6"
   },
   "exclude": [
     "dist",
