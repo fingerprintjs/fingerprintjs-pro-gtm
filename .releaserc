@@ -26,7 +26,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "pnpm build && tsx scripts/updateMetadata.ts ${nextRelease.gitHead} ${nextRelease.notes}"
+        "prepareCmd": "pnpm build && pnpm exec tsx scripts/updateMetadata.ts ${nextRelease.gitHead} ${nextRelease.notes}"
       }
     ],
     [
