@@ -1,3 +1,23 @@
+## [1.1.0-test.1](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/compare/v1.0.0...v1.1.0-test.1) (2024-03-26)
+
+
+### Features
+
+* add identification request timing ([2c97d3e](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/2c97d3e4caf95423a961554caa25ed81a1ad9c39))
+* create tag version with 3 roles: load, identify and load + identify ([4ae0f7b](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/4ae0f7b90bbbf25f7c93aa809a76e5e153b4b160))
+
+
+### Bug Fixes
+
+* show tag settings depends on tag type ([b77ddba](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/b77ddba7e55cc43aedd99adbc6b044159ea29bcb))
+
+
+### Documentation
+
+* **README:** add description to the `Tag type` template field ([dc4b3b2](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/dc4b3b24cfc422fe8077b6023f9592782ed0dba3))
+* **README:** remove beta warning ([c3c13dc](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/c3c13dc401f45d58b92ca0f6755ef492f33ba9d2))
+* **README:** update readme ([7535b4c](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/7535b4c4df66f19f037f24becda6ab560b952256))
+
 ## 1.0.0 (2023-04-07)
 
 ##### Chores
@@ -60,4 +80,3 @@
 #### 0.1.1 (2022-03-22)
 
 ### 0.1.0 (2022-03-22)
-
