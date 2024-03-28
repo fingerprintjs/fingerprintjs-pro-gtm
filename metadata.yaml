@@ -1,8 +1,48 @@
-homepage: "https://fingerprint.com"
-documentation: "https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager"
+homepage: https://fingerprint.com
+documentation: https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager
 versions:
+  - sha: 60138b9e1212bbfa3060169f7d31dde79df1c80a
+    changeNotes: >+
+      ##
+      [1.1.0](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/compare/v1.0.0...v1.1.0)
+      (2024-03-28)
+
+
+
+      ### Features
+
+
+      * add identification request timing
+      ([2c97d3e](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/2c97d3e4caf95423a961554caa25ed81a1ad9c39))
+
+      * create tag version with 3 roles: load, identify and load + identify
+      ([4ae0f7b](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/4ae0f7b90bbbf25f7c93aa809a76e5e153b4b160))
+
+
+
+      ### Bug Fixes
+
+
+      * show tag settings depends on tag type
+      ([b77ddba](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/b77ddba7e55cc43aedd99adbc6b044159ea29bcb))
+
+
+
+      ### Documentation
+
+
+      * **README:** add description to the  template field
+      ([dc4b3b2](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/dc4b3b24cfc422fe8077b6023f9592782ed0dba3))
+
+      * **README:** remove beta warning
+      ([c3c13dc](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/c3c13dc401f45d58b92ca0f6755ef492f33ba9d2))
+
+      * **README:** update readme
+      ([7e46ee5](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/commit/7e46ee5c68acf03f9cc4cf054cc26775d39ecc10))
+
   - sha: 311c586050a95aff5e7d0dd0fcae6688c01d043a
-    changeNotes: Allow using `tagType` to load the script and identify visitor separately, update documentation
+    changeNotes: Allow using `tagType` to load the script and identify visitor
+      separately, update documentation
   - sha: 8903831891281cd93f753d003965803b508e7336
     changeNotes: Update Endpoint param description
   - sha: a785033409d59fcc61b00af3cb556bf775bb28e2
