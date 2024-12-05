@@ -17,14 +17,14 @@
 
 This repository contains a Google Tag Manager template you can use to add [Fingerprint Pro](https://fingerprint.com/) to your website.  
 
-For step-by-step instructions on using this integration, see the full [Google Tag Manager guide](https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager) in the Fingeprint Pro documentation.
+For step-by-step instructions on using this integration, see the full [Google Tag Manager guide](https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager) in the Fingerprint documentation.
 
 
 ## Usage
 
 1. [Sign up](https://dashboard.fingerprint.com/signup) for a Fingerprint Pro account if you haven't already.
 2. Import this `template.tpl` from [latest release](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/releases) into your Google Tag Manager workspace.
-3. Add a Fingerprint Pro tag to your website. You will need your public API key and application region.
+3. Add a Fingerprint Pro tag to your website. You will need your public API key and workspace region.
 4. Use the `FingerprintJSProResult` or your own *Custom result name* to access the Fingerprint Pro result in GTM's `dataLayer`.
 5. Use `FingerprintJSPro.loaded` and `FingerprintJSPro.identified` to create custom events and trigger actions after the JS agent is loaded or the visitor is identified. 
 
@@ -59,7 +59,7 @@ Ad-blocking browser extensions such as AdBlock, uBlock Origin, etc., can block a
 
 ## Support and Feedback
 
-To report problems, ask questions or provide feedback, please use [Issues](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/issues). 
+To report problems, ask questions, or provide feedback, please use [Issues](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/issues). 
 If you need private support, you can email us at [oss-support@fingerprint.com](mailto:oss-support@fingerprint.com).
 
 ## License
