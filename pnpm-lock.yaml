@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fingerprint/agent':
+        specifier: ^4.1.0
+        version: 4.1.0
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
@@ -30,9 +33,6 @@ importers:
       '@fingerprintjs/eslint-config-dx-team':
         specifier: ^0.1.0
         version: 0.1.0(prettier@3.2.5)(typescript@5.4.3)
-      '@fingerprintjs/fingerprintjs-pro':
-        specifier: ^3.6.0
-        version: 3.6.0
       '@fingerprintjs/prettier-config-dx-team':
         specifier: ^0.1.0
         version: 0.1.0
@@ -653,6 +653,9 @@ packages:
     resolution: {integrity: sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
+  '@fingerprint/agent@4.1.0':
+    resolution: {integrity: sha512-KB1KA6uWHftrlGiwUdSjhXOFZSzhG7/wNKZIwREWL4ThxlOW4lT5OggXRpFuF888HCoe0LvucwDN7xSbT/6iqA==}
+
   '@fingerprintjs/changesets-changelog-format@0.2.0':
     resolution: {integrity: sha512-1jI+J1r8OKUtjlFfQW4bmQ8u4E1097zPaKw5fUCgAcahLPgwW4Ae+Keoc253CSyyaKgTu2v/wniUGchmPaXAsg==}
 
@@ -663,9 +666,6 @@ packages:
     resolution: {integrity: sha512-Yet9e0dDGmAhMsXnnRWbvTAWLlA2qWGvsOBnRscZtlJnv/Xm4xzurR4C4bqPBcX3rVZkedv9dBTLW3t/wRY0mA==}
     peerDependencies:
       prettier: '>=3'
-
-  '@fingerprintjs/fingerprintjs-pro@3.6.0':
-    resolution: {integrity: sha512-RaJPsx7K/VKXSXR/nAHgpUUAv6J+dkoboVHW8wiTYcwOB8LMFJ1GwWorkBHLSmnFTIDw7+v6BUtmKHjJeeSKYg==}
 
   '@fingerprintjs/prettier-config-dx-team@0.1.0':
     resolution: {integrity: sha512-ZXoyr5yEIMyBHujVa841dz+aHs9vqzRIU2+IpTG7JTZvbwztVeRdNxBGavWC51TtrlC+Q8Gi6Ba/ynZ6/7EYMg==}
@@ -3907,6 +3907,8 @@ snapshots:
 
   '@eslint/js@8.56.0': {}
 
+  '@fingerprint/agent@4.1.0': {}
+
   '@fingerprintjs/changesets-changelog-format@0.2.0':
     dependencies:
       '@changesets/types': 6.1.0
@@ -3921,16 +3923,12 @@ snapshots:
       '@typescript-eslint/parser': 6.19.1(eslint@8.56.0)(typescript@5.4.3)
       eslint: 8.56.0
       eslint-config-prettier: 9.1.0(eslint@8.56.0)
-      eslint-plugin-prettier: 5.1.3(eslint-config-prettier@9.1.0(eslint@8.56.0))(eslint@8.56.0)(prettier@3.2.5)
+      eslint-plugin-prettier: 5.1.3(eslint-config-prettier@9.1.0(eslint@8.11.0))(eslint@8.56.0)(prettier@3.2.5)
       prettier: 3.2.5
     transitivePeerDependencies:
       - '@types/eslint'
       - supports-color
       - typescript
-
-  '@fingerprintjs/fingerprintjs-pro@3.6.0':
-    dependencies:
-      tslib: 2.6.2
 
   '@fingerprintjs/prettier-config-dx-team@0.1.0':
     dependencies:
@@ -5047,7 +5045,7 @@ snapshots:
     dependencies:
       eslint: 8.56.0
 
-  eslint-plugin-prettier@5.1.3(eslint-config-prettier@9.1.0(eslint@8.56.0))(eslint@8.56.0)(prettier@3.2.5):
+  eslint-plugin-prettier@5.1.3(eslint-config-prettier@9.1.0(eslint@8.11.0))(eslint@8.56.0)(prettier@3.2.5):
     dependencies:
       eslint: 8.56.0
       prettier: 3.2.5
