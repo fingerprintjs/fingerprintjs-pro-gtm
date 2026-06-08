@@ -1,30 +1,18 @@
-# Repository content
-1. Fingerprint Pro Google Tag Manager template
-2. Fingerprint Pro adapter for Google Tag Manager
+# Contributing to Fingerprint adapter for Google Tag Manager
 
-# Contributing to Fingerprint Pro adapter for Google Tag Manager
+Since GTM ([Google Tag Manager](https://tagmanager.google.com/)) uses a subset of the [JavaScript API](https://developers.google.com/tag-platform/tag-manager/templates/sandboxed-javascript) that doesn't support `Promises`, we created this adapter for the [FingerprintJS JS agent](https://docs.fingerprint.com/reference/js-agent-v4) that can be used in a GTM template.
 
-Since GTM ([Google Tag Manager](https://tagmanager.google.com/)) uses a subset of JavaScript API that doesn't support Promises, we created this adapter for the [FingerprintJS Pro JS agent](https://dev.fingerprint.com/docs/js-agent) that can be used in a GTM template.
+The adapter code is hosted on CDN and accessible at `https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v1/iife.min.js`.
+See the [CDN repository](https://github.com/fingerprintjs/cdn) for more information.
 
-Adapter code hosted on CDN and accessible via the next URL `https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v0/iife.min.js`
+## Usage example
 
-More information about CDN you can get in [CDN repository](https://github.com/fingerprintjs/cdn)
-
-## Requirements
-
-The following dependencies are required:
-
-- Node 20+
-- Typescript 5+
-
-## Example of usage
-
-In GTM template we can load FingerprintJS Pro this way:
+In the GTM template, load the adapter from the CDN:
 
 ```javascript
 const injectScript = require('injectScript');
 const callInWindow = require('callInWindow');
-const url = 'https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v0/iife.min.js';
+const url = `https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v1/iife.min.js`;
 
 const onSuccess = () => {
   const onFpJsLoad = (result) => {
@@ -48,64 +36,72 @@ injectScript(url, onSuccess, onFailure);
 
 ```
 
-## Working with code
+## Working with the code
 
-We prefer using [yarn](https://yarnpkg.com/) for installing dependencies and running scripts.
+We prefer using [pnpm](https://pnpm.io/) for installing dependencies and running scripts.
 
 The main branch is locked for the push action. For proposing changes, use the standard [pull request approach](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). It's recommended to discuss fixes or new functionality in the Issues, first.
 
 ### How to build
+
 Just run:
+
 ```shell
-yarn build
+pnpm build
 ```
 
 ### Code style
 
 The code style is controlled by [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/). Run to check that the code style is ok:
+
 ```shell
-yarn lint
+pnpm lint
 ```
 
 You aren't required to run the check manually, the CI will do it. Run the following command to fix style issues (not all issues can be fixed automatically):
 ```shell
-yarn lint:fix
+pnpm lint:fix
 ```
 
 ### How to test
+
 Tests are located in `__tests__` folder and run by [jest](https://jestjs.io/) in [jsdom](https://github.com/jsdom/jsdom) environment.
 
 To run tests you can use IDE instruments or just run:
 ```shell
-yarn test
+pnpm test
 ```
 
-To check the Typescript types, run:
+To check the TypeScript types, run:
+
 ```shell
-yarn typecheck
+pnpm test:dts
 ```
 
 ### How to publish
-The library is automatically released and published on every push to the main branch if there are relevant changes using [semantic-release](https://github.com/semantic-release/semantic-release) with following plugins:
-* [@semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
-* [@semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
-* [@semantic-release/changelog](https://github.com/semantic-release/changelog)
-* [@semantic-release/npm](https://github.com/semantic-release/npm)
-* [@semantic-release/exec](https://github.com/semantic-release/exec)
-* [@semantic-release/github](https://github.com/semantic-release/github)
 
-The workflow must be approved by one of the maintainers, first.
+We use [changesets](https://github.com/changesets/changesets) for handling release notes. If there are relevant changes, please add them to changeset via `pnpm exec changeset`. You need to run `pnpm install` before doing so.
+
+On every push to the main branch, the [release](.github/workflows/release.yml) workflow executes to find new changesets and create or update a changesets-managed release PR. When that PR is merged, the [release](.github/workflows/release.yml) workflow will publish the package to NPM. The workflow must be approved by one of the maintainers, first.
 
 # Contributing to Fingerprint Pro Google Tag Manager template
 
-### Working with GTM template
+### Working with the GTM template
 
-After changing the template in GTM panel remember to update the `versions` section in **metadata.yaml**.
+The [template.tpl](template.tpl) file contains the source for the GTM template that will inject the JS Agent adapter into the associated window and expose the JS agent results to other tags.
+It can validated and debugged by importing the template into your GTM workspace.
 
-[Read more about updating templates](https://developers.google.com/tag-platform/tag-manager/templates/gallery#update_your_template)
+[Read more about authoring templates](https://developers.google.com/tag-platform/tag-manager/templates)
 
 ### Testing
 
-When adding new features remember to provide tests that can be run inside the template environment in GTM.
+When adding new features, remember to provide tests that can be run inside the template environment in GTM.
 
 [Read more about tests in GTM](https://developers.google.com/tag-platform/tag-manager/templates/tests)
+
+### Updating the template
+
+After a new GitHub release is published, the [update-gtm-metadata](.github/workflows/update-gtm-metadata.yaml) workflow will open a PR
+to update the [metadata.yaml](metadata.yaml) file with details from the latest release.
+
+[Read more about updating templates](https://developers.google.com/tag-platform/tag-manager/templates/gallery#update_your_template)
