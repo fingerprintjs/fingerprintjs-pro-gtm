@@ -1,36 +1,34 @@
-import type * as Fingerprint from '@fingerprint/agent'
-
-const mockedAddIntegrationInfo = jest.fn()
+import * as Fingerprint from '@fingerprint/agent'
+import { addIntegrationInfo } from '../src/integrationInfo'
+import * as adapter from '../src/adapter'
 
 jest.mock('@fingerprint/agent')
-jest.mock('../src/integrationInfo', () => ({
-  addIntegrationInfo: (options: unknown) => mockedAddIntegrationInfo(options),
-}))
+jest.mock('../src/integrationInfo')
+
+const mockedStart = jest.mocked(Fingerprint.start)
+const mockedAddIntegrationInfo = jest.mocked(addIntegrationInfo)
 
 describe('adapter', () => {
   let agentGet: jest.Mock
-  let mockedStart: jest.MockedFunction<typeof Fingerprint.start>
-  let adapter: typeof import('../src/adapter')
 
   beforeEach(() => {
-    jest.resetModules()
+    // Reset the adapter's module-level agent to undefined by driving start
+    // with a mock that returns undefined.
+    mockedStart.mockReturnValue(undefined as unknown as Fingerprint.Agent)
+    adapter.start({} as Fingerprint.StartOptions)
+
     jest.clearAllMocks()
 
     agentGet = jest.fn()
-    // Require the mocked agent fresh so it matches the instance used by the
-    // freshly-required adapter module after resetModules().
-    mockedStart = require('@fingerprint/agent').start
     mockedStart.mockReturnValue({ get: agentGet } as unknown as Fingerprint.Agent)
-    mockedAddIntegrationInfo.mockImplementation((options) => options)
-
-    adapter = require('../src/adapter')
+    mockedAddIntegrationInfo.mockImplementation((options) => options as ReturnType<typeof addIntegrationInfo>)
   })
 
   describe('start', () => {
     it('starts the agent with options passed through addIntegrationInfo', () => {
       const options = { apiKey: 'key' } as Fingerprint.StartOptions
       const withInfo = { apiKey: 'key', integrationInfo: ['x'] } as Fingerprint.StartOptions
-      mockedAddIntegrationInfo.mockReturnValue(withInfo)
+      mockedAddIntegrationInfo.mockReturnValue(withInfo as ReturnType<typeof addIntegrationInfo>)
 
       adapter.start(options)
 
