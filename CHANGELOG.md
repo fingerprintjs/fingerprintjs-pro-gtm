@@ -1,4 +1,4 @@
-# @fingerprintjs/fingerprintjs-pro-gtm
+# Fingerprint Google Tag Manager Template
 
 ## [1.1.0](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/compare/v1.0.0...v1.1.0) (2024-03-28)
 
