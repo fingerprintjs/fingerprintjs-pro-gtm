@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest'
+
 import { addIntegrationInfo } from '../src/integrationInfo'
 import { version } from '../package.json'
 

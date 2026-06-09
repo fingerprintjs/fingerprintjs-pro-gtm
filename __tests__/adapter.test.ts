@@ -1,15 +1,17 @@
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
+
 import * as Fingerprint from '@fingerprint/agent'
 import { addIntegrationInfo } from '../src/integrationInfo'
 import * as adapter from '../src/adapter'
 
-jest.mock('@fingerprint/agent')
-jest.mock('../src/integrationInfo')
+vi.mock('@fingerprint/agent')
+vi.mock('../src/integrationInfo')
 
-const mockedStart = jest.mocked(Fingerprint.start)
-const mockedAddIntegrationInfo = jest.mocked(addIntegrationInfo)
+const mockedStart = vi.mocked(Fingerprint.start)
+const mockedAddIntegrationInfo = vi.mocked(addIntegrationInfo)
 
 describe('adapter', () => {
-  let agentGet: jest.Mock
+  let agentGet: Mock
 
   beforeEach(() => {
     // Reset the adapter's module-level agent to undefined by driving start
@@ -17,9 +19,9 @@ describe('adapter', () => {
     mockedStart.mockReturnValue(undefined as unknown as Fingerprint.Agent)
     adapter.start({} as Fingerprint.StartOptions)
 
-    jest.clearAllMocks()
+    vi.clearAllMocks()
 
-    agentGet = jest.fn()
+    agentGet = vi.fn()
     mockedStart.mockReturnValue({ get: agentGet } as unknown as Fingerprint.Agent)
     mockedAddIntegrationInfo.mockImplementation((options) => options as ReturnType<typeof addIntegrationInfo>)
   })
@@ -41,8 +43,8 @@ describe('adapter', () => {
     const getOptions = {} as Fingerprint.GetOptions
 
     it('throws if start was not called first', () => {
-      const onFulfilled = jest.fn()
-      const onRejected = jest.fn()
+      const onFulfilled = vi.fn()
+      const onRejected = vi.fn()
 
       expect(() => adapter.get(getOptions, onFulfilled, onRejected)).toThrow('Call start method first')
       expect(onFulfilled).not.toHaveBeenCalled()
@@ -53,7 +55,7 @@ describe('adapter', () => {
       adapter.start({ apiKey: 'key' } as Fingerprint.StartOptions)
       agentGet.mockResolvedValue({ requestId: 'r1', sealed_result: null })
 
-      adapter.get(getOptions, jest.fn(), jest.fn())
+      adapter.get(getOptions, vi.fn(), vi.fn())
 
       expect(agentGet).toHaveBeenCalledWith(getOptions)
     })
@@ -62,8 +64,8 @@ describe('adapter', () => {
       adapter.start({ apiKey: 'key' } as Fingerprint.StartOptions)
       const sealed = { toString: () => 'sealed-string' }
       agentGet.mockResolvedValue({ requestId: 'r1', sealed_result: sealed })
-      const onFulfilled = jest.fn()
-      const onRejected = jest.fn()
+      const onFulfilled = vi.fn()
+      const onRejected = vi.fn()
 
       adapter.get(getOptions, onFulfilled, onRejected)
       await Promise.resolve()
@@ -75,9 +77,9 @@ describe('adapter', () => {
     it('calls onFulfilled with null when sealed_result is null', async () => {
       adapter.start({ apiKey: 'key' } as Fingerprint.StartOptions)
       agentGet.mockResolvedValue({ requestId: 'r1', sealed_result: null })
-      const onFulfilled = jest.fn()
+      const onFulfilled = vi.fn()
 
-      adapter.get(getOptions, onFulfilled, jest.fn())
+      adapter.get(getOptions, onFulfilled, vi.fn())
       await Promise.resolve()
 
       expect(onFulfilled).toHaveBeenCalledWith({ requestId: 'r1', sealed_result: null })
@@ -87,8 +89,8 @@ describe('adapter', () => {
       adapter.start({ apiKey: 'key' } as Fingerprint.StartOptions)
       const reason = new Error('boom')
       agentGet.mockRejectedValue(reason)
-      const onFulfilled = jest.fn()
-      const onRejected = jest.fn()
+      const onFulfilled = vi.fn()
+      const onRejected = vi.fn()
 
       adapter.get(getOptions, onFulfilled, onRejected)
       await Promise.resolve()
