@@ -82,7 +82,7 @@ pnpm test:dts
 
 We use [changesets](https://github.com/changesets/changesets) for handling release notes. If there are relevant changes, please add them to changeset via `pnpm exec changeset`. You need to run `pnpm install` before doing so.
 
-On every push to the main branch, the [release](.github/workflows/release.yml) workflow executes to find new changesets and create or update a changesets-managed release PR. When that PR is merged, the [release](.github/workflows/release.yml) workflow will publish the package to NPM. The workflow must be approved by one of the maintainers, first.
+On every push to the main branch, the [release](.github/workflows/release.yml) workflow executes to find new changesets and create or update a changesets-managed release PR. When that PR is merged, the [release](.github/workflows/release.yml) workflow will publish the adapter package to NPM as [@fingerprint/gtm-adapter](https://www.npmjs.com/package/@fingerprint/gtm-adapter) and create a GitHub release. The workflow must be approved by one of the maintainers, first.
 
 # Contributing to Fingerprint Google Tag Manager template
 
