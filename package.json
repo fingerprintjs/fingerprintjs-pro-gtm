@@ -21,7 +21,7 @@
     "changeset:version": "changeset version",
     "changeset:publish": "HUSKY=0 changeset publish"
   },
-  "module": "dist/fpjs-pro-gtm.esm.js",
+  "module": "dist/fp-gtm-adapter.esm.js",
   "files": [
     "dist"
   ],
