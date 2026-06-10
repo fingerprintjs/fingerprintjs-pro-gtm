@@ -1,2 +1,2 @@
-import { load, get } from './load'
-export { load, get }
+import { start, get } from './adapter'
+export { start, get }

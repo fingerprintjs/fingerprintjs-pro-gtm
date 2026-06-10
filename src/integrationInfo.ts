@@ -1,8 +1,10 @@
-import type { LoadOptions } from '@fingerprintjs/fingerprintjs-pro'
+import { type StartOptions } from '@fingerprint/agent'
 import { version } from '../package.json'
 
-export function addIntegrationInfo(loadOptions: LoadOptions) {
-  const { integrationInfo = [] } = loadOptions
-  loadOptions.integrationInfo = [`fingerprintjs-pro-gtm/${version}`].concat(integrationInfo)
-  return loadOptions
+export function addIntegrationInfo(startOptions: StartOptions) {
+  const { integrationInfo = [] } = startOptions
+  return {
+    ...startOptions,
+    integrationInfo: [`fingerprintjs-pro-gtm/${version}`].concat(integrationInfo),
+  }
 }

@@ -64,4 +64,4 @@ If you need private support, you can email us at [oss-support@fingerprint.com](m
 
 ## License
 
-This project is licensed under the [MIT license](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/blob/main/LICENSE).
+This project is licensed under the [Apache 2.0 license](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/blob/main/LICENSE).
