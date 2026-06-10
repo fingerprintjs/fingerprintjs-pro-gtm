@@ -7,7 +7,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/fingerprintjs/fingerprintjs-pro-gtm.git"
+    "url": "https://github.com/fingerprintjs/gtm-integration.git"
   },
   "scripts": {
     "build": "rimraf dist && rollup -c --bundleConfigAsCjs",

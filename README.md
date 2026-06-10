@@ -8,8 +8,8 @@
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/fingerprintjs/fingerprintjs-pro-gtm/actions/workflows/build.yml">
-    <img src="https://github.com/fingerprintjs/fingerprintjs-pro-gtm/actions/workflows/build.yml/badge.svg" alt="Build status">
+  <a href="https://github.com/fingerprintjs/gtm-integration/actions/workflows/build.yml">
+    <img src="https://github.com/fingerprintjs/gtm-integration/actions/workflows/build.yml/badge.svg" alt="Build status">
   </a>
 </p>
 
@@ -23,7 +23,7 @@ For step-by-step instructions on using this integration, see the full [Google Ta
 ## Usage
 
 1. [Sign up](https://dashboard.fingerprint.com/signup) for a Fingerprint Pro account if you haven't already.
-2. Import this `template.tpl` from [latest release](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/releases) into your Google Tag Manager workspace.
+2. Import this `template.tpl` from [latest release](https://github.com/fingerprintjs/gtm-integration/releases) into your Google Tag Manager workspace.
 3. Add a Fingerprint Pro tag to your website. You will need your public API key and workspace region.
 4. Use the `FingerprintResult` or your own *Custom result name* to access the Fingerprint Pro result in GTM's `dataLayer`.
 5. Use the `Fingerprint.started` and `Fingerprint.identified` event names to create custom events and trigger actions after the JS agent is loaded or the visitor is identified.
@@ -57,9 +57,9 @@ Ad-blocking browser extensions such as AdBlock, uBlock Origin, etc., can block a
 
 ## Support and Feedback
 
-To report problems, ask questions, or provide feedback, please use [Issues](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/issues). 
+To report problems, ask questions, or provide feedback, please use [Issues](https://github.com/fingerprintjs/gtm-integration/issues). 
 If you need private support, you can email us at [oss-support@fingerprint.com](mailto:oss-support@fingerprint.com).
 
 ## License
 
-This project is licensed under the [Apache 2.0 license](https://github.com/fingerprintjs/fingerprintjs-pro-gtm/blob/main/LICENSE).
+This project is licensed under the [Apache 2.0 license](https://github.com/fingerprintjs/gtm-integration/blob/main/LICENSE).
