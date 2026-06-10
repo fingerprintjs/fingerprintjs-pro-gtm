@@ -1,2 +1,2 @@
-FingerprintJS Pro GTM v<%= pkg.version %> - Copyright (c) FingerprintJS, Inc, <%= new Date().getFullYear() %> (https://fingerprint.com)
+Fingerprint GTM Adapter v<%= pkg.version %> - Copyright (c) FingerprintJS, Inc, <%= new Date().getFullYear() %> (https://fingerprint.com)
 Licensed under the Apache 2.0 (http://www.opensource.org/licenses/mit-license.php) license.

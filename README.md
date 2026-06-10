@@ -13,27 +13,27 @@
   </a>
 </p>
 
-# Fingerprint Pro Google Tag Manager template
+# Fingerprint Google Tag Manager template
 
-This repository contains a Google Tag Manager template you can use to add [Fingerprint Pro](https://fingerprint.com/) to your website.  
+This repository contains a Google Tag Manager template you can use to add [Fingerprint](https://fingerprint.com/) to your website.  
 
 For step-by-step instructions on using this integration, see the full [Google Tag Manager guide](https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager) in the Fingerprint documentation.
 
 
 ## Usage
 
-1. [Sign up](https://dashboard.fingerprint.com/signup) for a Fingerprint Pro account if you haven't already.
+1. [Sign up](https://dashboard.fingerprint.com/signup) for a Fingerprint account if you haven't already.
 2. Import this `template.tpl` from [latest release](https://github.com/fingerprintjs/gtm-integration/releases) into your Google Tag Manager workspace.
-3. Add a Fingerprint Pro tag to your website. You will need your public API key and workspace region.
-4. Use the `FingerprintResult` or your own *Custom result name* to access the Fingerprint Pro result in GTM's `dataLayer`.
+3. Add a Fingerprint tag to your website. You will need your public API key and workspace region.
+4. Use the `FingerprintResult` or your own *Custom result name* to access the Fingerprint result in GTM's `dataLayer`.
 5. Use the `Fingerprint.started` and `Fingerprint.identified` event names to create custom events and trigger actions after the JS agent is loaded or the visitor is identified.
 
 ## Template Fields
 
-For more information and the full API reference, see [Fingerprint Pro JS Agent](https://dev.fingerprint.com/docs/js-agent) in our documentation.
+For more information and the full API reference, see [Fingerprint JS Agent](https://dev.fingerprint.com/docs/js-agent) in our documentation.
 
 `Tag type` – The way you want to use the tag. There are 3 options:
-  - `Start and identify` – the default behavior. Start the JS agent and identify the browser immediately. If you want to start the JS agent first and identify the browser later based on some event, use two separate `Start` and `Identify` Fingerprint Pro tags.
+  - `Start and identify` – the default behavior. Start the JS agent and identify the browser immediately. If you want to start the JS agent first and identify the browser later based on some event, use two separate `Start` and `Identify` Fingerprint tags.
   - `Start` – only load the JS Agent.
   - `Identify` – identify the browser. The JS Agent must be started before. You can collect additional metadata data first and then trigger this tag with the metadata inside `linkedId` or `tag`.
 

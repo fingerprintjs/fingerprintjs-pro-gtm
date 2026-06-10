@@ -24,7 +24,7 @@ const onSuccess = () => {
     data.gtmOnSuccess();
   };
 
-  callInWindow('FingerprintjsProGTM.load', {apiKey: data.apiKey}, onFpJsLoad);
+  callInWindow('FingerprintGTM.load', {apiKey: data.apiKey}, onFpJsLoad);
 };
 
 // If the script fails to load, log a message and signal failure
