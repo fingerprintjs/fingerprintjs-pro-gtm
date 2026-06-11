@@ -136,6 +136,13 @@ ___TEMPLATE_PARAMETERS___
                 "valueValidators": [
                   {
                     "type": "NON_EMPTY"
+                  },
+                  {
+                    "type": "REGEX",
+                    "args": [
+                      "^https:\\/\\/[^\\s\\$.?#]+\\.[^\\s]*$"
+                    ],
+                    "errorMessage": "Enter a valid https:// URL. It must include a TLD suffix."
                   }
                 ]
               }
