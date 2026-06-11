@@ -218,7 +218,7 @@ const createQueue = require('createQueue');
 const copyFromWindow = require('copyFromWindow');
 const getTimestampMillis = require('getTimestampMillis');
 
-const url = 'https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v1/iife.min.js';
+const url = 'https://opencdn.fpjs.sh/gtm-adapter/v2/iife.min.js';
 
 log('data =', data);
 
@@ -350,7 +350,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v1/iife.min.js"
+                "string": "https://opencdn.fpjs.sh/gtm-adapter/v2/iife.min.js"
               }
             ]
           }
