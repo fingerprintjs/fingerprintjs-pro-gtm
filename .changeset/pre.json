@@ -2,7 +2,7 @@
   "mode": "pre",
   "tag": "test",
   "initialVersions": {
-    "@fingerprintjs/fingerprintjs-pro-gtm": "1.1.0"
+    "@fingerprint/gtm-adapter": "1.1.0"
   },
   "changesets": []
 }

@@ -1,5 +1,5 @@
 ---
-'@fingerprintjs/fingerprintjs-pro-gtm': major
+'@fingerprint/gtm-adapter': major
 ---
 
 Switch to JS Agent v4 (`@fingerprint/agent`) in the GTM adapter. This is a breaking change.

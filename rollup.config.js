@@ -6,7 +6,7 @@ import { join } from 'path'
 
 const inputFile = 'src/index.ts'
 const outputDirectory = 'dist'
-const artifactName = 'fpjs-pro-gtm'
+const artifactName = 'fp-gtm-adapter'
 
 const commonBanner = licensePlugin({
   banner: {
@@ -22,7 +22,7 @@ const commonInput = {
 }
 
 const commonOutput = {
-  name: 'FingerprintjsProGTM',
+  name: 'FingerprintGTM',
   exports: 'named',
 }
 

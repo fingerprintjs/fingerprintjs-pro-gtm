@@ -1,5 +1,5 @@
 ---
-'@fingerprintjs/fingerprintjs-pro-gtm': major
+'@fingerprint/gtm-adapter': major
 ---
 
 Update GTM template to support JS agent v4. This is a breaking change.

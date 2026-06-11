@@ -2,7 +2,7 @@
 
 Since GTM ([Google Tag Manager](https://tagmanager.google.com/)) uses a subset of the [JavaScript API](https://developers.google.com/tag-platform/tag-manager/templates/sandboxed-javascript) that doesn't support `Promises`, we created this adapter for the [FingerprintJS JS agent](https://docs.fingerprint.com/reference/js-agent-v4) that can be used in a GTM template.
 
-The adapter code is hosted on CDN and accessible at `https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v1/iife.min.js`.
+The adapter code is hosted on CDN and accessible at `https://opencdn.fpjs.sh/gtm-adapter/v2/iife.min.js`.
 See the [CDN repository](https://github.com/fingerprintjs/cdn) for more information.
 
 ## Usage example
@@ -12,7 +12,7 @@ In the GTM template, load the adapter from the CDN:
 ```javascript
 const injectScript = require('injectScript');
 const callInWindow = require('callInWindow');
-const url = `https://opencdn.fpjs.sh/fingerprintjs-pro-gtm/v1/iife.min.js`;
+const url = `https://opencdn.fpjs.sh/gtm-adapter/v2/iife.min.js`;
 
 const onSuccess = () => {
   const onFpJsLoad = (result) => {
@@ -24,7 +24,7 @@ const onSuccess = () => {
     data.gtmOnSuccess();
   };
 
-  callInWindow('FingerprintjsProGTM.load', {apiKey: data.apiKey}, onFpJsLoad);
+  callInWindow('FingerprintGTM.load', {apiKey: data.apiKey}, onFpJsLoad);
 };
 
 // If the script fails to load, log a message and signal failure
