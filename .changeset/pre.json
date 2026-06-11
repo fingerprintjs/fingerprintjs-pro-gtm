@@ -4,5 +4,8 @@
   "initialVersions": {
     "@fingerprint/gtm-adapter": "1.1.0"
   },
-  "changesets": []
+  "changesets": [
+    "adapter-js-agent-v4",
+    "template-js-agent-v4"
+  ]
 }
