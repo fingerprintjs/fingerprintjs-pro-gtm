@@ -140,9 +140,9 @@ ___TEMPLATE_PARAMETERS___
                   {
                     "type": "REGEX",
                     "args": [
-                      "^https:\\/\\/[^\\s\\$.?#]\\.[^\\s]*$"
+                      "^https:\\/\\/[^\\s\\$.?#]+\\.[^\\s]*$"
                     ],
-                    "errorMessage": "Enter a valid https:// URL"
+                    "errorMessage": "Enter a valid https:// URL. It must include a TLD suffix."
                   }
                 ]
               }
