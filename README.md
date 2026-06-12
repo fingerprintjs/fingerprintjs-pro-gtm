@@ -8,8 +8,8 @@
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/fingerprintjs/gtm-integration/actions/workflows/build.yml">
-    <img src="https://github.com/fingerprintjs/gtm-integration/actions/workflows/build.yml/badge.svg" alt="Build status">
+  <a href="https://github.com/fingerprintjs/gtm-integration/actions/workflows/ci.yml">
+    <img src="https://github.com/fingerprintjs/gtm-integration/actions/workflows/ci.yml/badge.svg" alt="CI status">
   </a>
 </p>
 
@@ -17,7 +17,7 @@
 
 This repository contains a Google Tag Manager template you can use to add [Fingerprint](https://fingerprint.com/) to your website.  
 
-For step-by-step instructions on using this integration, see the full [Google Tag Manager guide](https://dev.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager) in the Fingerprint documentation.
+For step-by-step instructions on using this integration, see the full [Google Tag Manager guide](https://docs.fingerprint.com/docs/fingerprintjs-pro-google-tag-manager) in the Fingerprint documentation.
 
 
 ## Usage
@@ -30,7 +30,7 @@ For step-by-step instructions on using this integration, see the full [Google Ta
 
 ## Template Fields
 
-For more information and the full API reference, see [Fingerprint JS Agent](https://dev.fingerprint.com/docs/js-agent) in our documentation.
+For more information and the full API reference, see [Fingerprint JS Agent](https://docs.fingerprint.com/docs/js-agent) in our documentation.
 
 `Tag type` – The way you want to use the tag. There are 3 options:
   - `Start and identify` – the default behavior. Start the JS agent and identify the browser immediately. If you want to start the JS agent first and identify the browser later based on some event, use two separate `Start` and `Identify` Fingerprint tags.
@@ -39,13 +39,13 @@ For more information and the full API reference, see [Fingerprint JS Agent](http
 
 `Public API key` - Your public API key that authenticates the agent with the Fingerprint API.
 
-`Region` - The [region](https://dev.fingerprint.com/docs/regions) of your subscription.
+`Region` - The [region](https://docs.fingerprint.com/docs/regions) of your subscription.
 
 `endpoints` - This parameter should only be used with the custom subdomain or proxy integrations. Specify the API endpoint URL for those integrations in this field.
 
 `tag` - a customer-provided value or an object that will be saved together with the identification event and will be returned back to you in a webhook message or when you search for the visit in the server API.
 
-`linkedId` - is a way of linking current identification event with a custom identifier. This will allow you to filter visit information when using the [Server API](https://dev.fingerprint.com/docs/server-api)
+`linkedId` - is a way of linking current identification event with a custom identifier. This will allow you to filter visit information when using the [Server API](https://docs.fingerprint.com/docs/server-api)
 
 `Result custom name` - you can specify the result field name in `dataLayer`.
 
