@@ -8,8 +8,8 @@
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/fingerprintjs/gtm-integration/actions/workflows/build.yml">
-    <img src="https://github.com/fingerprintjs/gtm-integration/actions/workflows/build.yml/badge.svg" alt="Build status">
+  <a href="https://github.com/fingerprintjs/gtm-integration/actions/workflows/ci.yml">
+    <img src="https://github.com/fingerprintjs/gtm-integration/actions/workflows/ci.yml/badge.svg" alt="CI status">
   </a>
 </p>
 
