@@ -6,6 +6,7 @@
   },
   "changesets": [
     "adapter-js-agent-v4",
+    "clear-kings-happen",
     "template-js-agent-v4"
   ]
 }
