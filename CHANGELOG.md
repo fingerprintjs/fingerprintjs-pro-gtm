@@ -1,5 +1,11 @@
 # Fingerprint Google Tag Manager Template
 
+## 2.0.0-test.1
+
+### Patch Changes
+
+- Remove `private` property from package.json. This is a temporary changeset to trigger the next prerelease. ([db005a0](https://github.com/fingerprintjs/gtm-integration/commit/db005a0f7888719e5786f8552179cd5f05617878))
+
 ## 2.0.0-test.0
 
 ### Major Changes
