@@ -21,6 +21,7 @@ jobs:
       language: node
       language-version: 24
       prepare-command: pnpm build
+      github-release-files: template.tpl,dist/fp-gtm-adapter.esm.js
     secrets:
       APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
       RUNNER_APP_PRIVATE_KEY: ${{ secrets.RUNNER_APP_PRIVATE_KEY }}
