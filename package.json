@@ -4,7 +4,6 @@
   "description": "Fingerprint JS agent adapter for Google Tag Manager",
   "author": "FingerprintJS, Inc (https://fingerprint.com)",
   "license": "Apache-2.0",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/fingerprintjs/gtm-integration.git"
